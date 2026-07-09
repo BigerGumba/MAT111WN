@@ -15,3 +15,10 @@ body {
   width: fit-content;
   background: #ffffff;
 }
+
+#sketch canvas {
+  display: block;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

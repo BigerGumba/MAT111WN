@@ -51,7 +51,8 @@ let tID = 0;
 
 async function setup() {
   dialogueFile = await fetch("dialogue.json");
-  createCanvas(400, 400);
+  const c = createCanvas(400, 400);
+  c.parent('sketch');  // attach canvas inside the <div id="sketch">
   rectMode(CENTER);
   textAlign(CENTER,CENTER);
 }
