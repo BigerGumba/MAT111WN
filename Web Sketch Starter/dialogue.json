@@ -1,12 +1,12 @@
 {
   "GUIDE-DO-NOT-CALL":{
-    "":"/p-Pause for five frames",
-    "":"/l-Pause for thirty frames",
-    "":"/r-Reveal text until next command",
-    "":"/ -Cancel /r",
-    "":"/s-Advance Speaker",
-    "":"/n-End of text block or Speaker name",
-    "":"/e-End of dialogue"
+    "1":"/p-Pause for five frames",
+    "2":"/l-Pause for thirty frames",
+    "3":"/r-Reveal text until next command",
+    "4":"/ -Cancel /r",
+    "5":"/s-Advance Speaker",
+    "6":"/n-End of text block or Speaker name",
+    "7":"/e-End of dialogue"
   },
   "IntroductoryCutscene":{
     "speaker":"",
