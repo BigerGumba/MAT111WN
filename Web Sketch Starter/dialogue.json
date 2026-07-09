@@ -1,0 +1,39 @@
+{
+  "GUIDE-DO-NOT-CALL":{
+    "":"/p-Pause for five frames",
+    "":"/l-Pause for thirty frames",
+    "":"/r-Reveal text until next command",
+    "":"/ -Cancel /r",
+    "":"/s-Advance Speaker",
+    "":"/n-End of text block or Speaker name",
+    "":"/e-End of dialogue"
+  },
+  "IntroductoryCutscene":{
+    "speaker":"",
+    "text":""
+  },
+  "BossMonologue00":{
+    "speaker":"Exelsior",
+    "text":"Attention, /pOPERATOR0040."
+  },
+  "Ending0":{
+    "speaker":"Exelsior/n",
+    "text":""
+  },
+  "Ending1":{
+    "speaker":"Exelsior/nOPERATOR0038/nOPERATOR0040/n",
+    "text":""
+  },
+  "Ending2":{
+    "speaker":"",
+    "text":""
+  },
+  "Ending3":{
+    "speaker":"Exelsior/n",
+    "text":""
+  },
+  "Ending4":{
+    "speaker":"",
+    "text":""
+  }
+}
