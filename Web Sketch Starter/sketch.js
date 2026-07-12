@@ -29,7 +29,7 @@ let state = "T";
 
 let x = 200;
 let y = 200;
-let s = 999;
+export let s = 999;
 /*
   SCENE GUIDE
   0 = Real Home
@@ -84,11 +84,45 @@ class dialogue_box {
   }
 }
 
+let menuSS = [];
+
+let charSS = [];
+
+let bossSS = [];
+
+let npcSS = [];
+
+let enviroSSVirt = [];
+
+let enviroSSDeep = [];
+
+let enviroSSReal = [];
+
+function preload() {
+  menuSS.push(load("menu/gamelogo.png"));
+  menuSS.push(load("menu/menu_newgame.png"));
+  menuSS.push(load("menu/menu_back.png"));
+  menuSS.push(load("menu/menu_disclaimer.png"));
+  menuSS.push(load("menu/menu_disclaimertext.png"));
+  menuSS.push(load("menu/menu_sceneselect_off.png"));
+  menuSS.push(load("menu/menu_sceneselect_on.png"));
+  menuSS.push(load("menu/menu_ss1.png"));
+  menuSS.push(load("menu/menu_ss2.png"));
+  menuSS.push(load("menu/menu_ss3.png"));
+  menuSS.push(load("menu/menu_ss4.png"));
+  menuSS.push(load("menu/menu_ss5.png"));
+  menuSS.push(load("menu/menu_ss6.png"));
+  menuSS.push(load("menu/menu_ss7.png"));
+  menuSS.push(load("menu/menu_sslocked.png"));
+}
+
 async function setup() {
   dialogueFile = await fetch("dialogue.json");
   const c = createCanvas(400, 400);
-  c.parent('sketch');  // attach canvas inside the <div id="sketch">
+  c.parent('sketch');
+
   rectMode(CENTER);
+  imageMode(CENTER);
   textAlign(CENTER,CENTER);
   noSmooth();
 }
@@ -128,6 +162,8 @@ function draw() {
     case 200:
       break;
     case 300:
+      background(0);
+      image(menuSS[0], 400, 100);
       break;
     case 301:
       break;
@@ -137,6 +173,7 @@ function draw() {
       break;
     case 999:
       background(0);
+      return;
   }
 
   if (state == "I") {
@@ -165,19 +202,6 @@ function draw() {
       y = -149;
     }
   }
-  stroke(0);
-  if (detectArea(150, 60, 250, 140) && state == "I") {
-    movingText("Press Z to Interact!", 200, 80);
-  }
-  
-  if (state == "D") {
-    textSize(16);
-    textbox(color(0));
-    textSize(8);
-  }
-  movingRect(200, 100, 30, 30);
-  rect(width / 2, height / 2,20,20);
-  
 }
 
 function changeState(newState) {
