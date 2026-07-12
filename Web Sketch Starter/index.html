@@ -16,6 +16,30 @@
   <body>
     <h1>My p5.js Sketch</h1>
     <div id="sketch"></div>
+    <button id="play_button" type="button" on_click="toggle">Begin.</button>
   </body>
+  <script type="module">
+    import {flag} from "sketch.js";
+
+    function toggle() {
+      if (flag[7]) {
+        if (flag[8]) {
+          if (flag[9]) {
+            document.getElementById("play_button").innerHTML = "Game has been saved.";
+          }
+          else {
+            document.getElementById("play_button").innerHTML = "Save?";
+          }
+        }
+        else {
+          document.getElementById("play_button").innerHTML = "Game in progress...";
+        }
+      }
+      else {
+        flag[7] = true;
+        document.getElementById("play_button").innerHTML = "Game in progress...";
+      }
+    }
+  </script>
 
 </html>

@@ -1,4 +1,7 @@
-let flag = [true];
+export let flag = [true, 
+            false, false, false, false, false,
+            false, false, false, false
+];
 /*
   FLAGS GUIDE
   0 = Started new game?
@@ -8,15 +11,20 @@ let flag = [true];
   4 = Reached Scene 5?
   5 = Reached Scene 6?
   6 = Reached Scene 9?
+  7 = Initiated?
+  8 = Paused?
+  9 = In Save Animation?
 */
+let defaultFlags = [true];
 
-let state = "I";
+let state = "T";
 /*
   STATE GUIDE
   "I" = Idle, can move
   "D" = Dialogue, when dialogue box appears
   "C" = Cutscene, all interaction and movement paused for a while
   "T" = Title Screen, only Mouse input is registered
+  "P" = Paused
 */
 
 let x = 200;
@@ -48,7 +56,33 @@ let s = 999;
 */
 
 let dialogueFile;
-let tID = 0;
+
+class dialogue_box {
+  constructor(tID) {
+    this.tID = tID;
+    this.c = 0;
+    this.string = "";
+    this.speaker = "";
+  }
+  boxDraw() {
+    circle((width / 2) - (width * 4) / 10, (height * 8)/10, 40);
+    circle((width / 2) - (width * 4) / 10, (height * 9)/10, 40);
+    circle((width / 2) + (width * 4) / 10, (height * 8)/10, 40);
+    circle((width / 2) + (width * 4) / 10, (height * 9)/10, 40);
+    noStroke();
+    rect(width / 2, (height * 17)/20, (width * 8) / 10, (height * 1) / 5);
+    rect(width / 2, (height * 17)/20, (width * 9) / 10, (height * 1) / 10);
+    stroke(newStroke);
+    line((width / 2) - (width * 4) / 10, (height * 19)/20, (width / 2) + (width * 4) / 10, (height * 19)/20);
+    line((width / 2) - (width * 4) / 10, (height * 15)/20, (width / 2) + (width * 4) / 10, (height * 15)/20);
+    line((width / 2) - (width * 9) / 20, (height * 16)/20, (width / 2) - (width * 9) / 20, (height * 18)/20);
+    line((width / 2) + (width * 9) / 20, (height * 16)/20, (width / 2) + (width * 9) / 20, (height * 18)/20);
+
+
+    text(this.string, width / 2, (height * 17)/20, (width*9)/10,(height*1)/5);
+
+  }
+}
 
 async function setup() {
   dialogueFile = await fetch("dialogue.json");
@@ -56,10 +90,54 @@ async function setup() {
   c.parent('sketch');  // attach canvas inside the <div id="sketch">
   rectMode(CENTER);
   textAlign(CENTER,CENTER);
+  noSmooth();
 }
 
 function draw() {
-  background(220);
+  switch (s) {
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      break;
+    case 8:
+      break;
+    case 9:
+      break;
+    case 100:
+      break;
+    case 101:
+      break;
+    case 102:
+      break;
+    case 103:
+      break;
+    case 104:
+      break;
+    case 200:
+      break;
+    case 300:
+      break;
+    case 301:
+      break;
+    case 302:
+      break;
+    case 303:
+      break;
+    case 999:
+      background(0);
+  }
 
   if (state == "I") {
     if (keyIsDown(UP_ARROW)){
@@ -102,6 +180,22 @@ function draw() {
   
 }
 
+function changeState(newState) {
+  switch (newState) {
+    case "I":
+      break;
+    case "D":
+      break;
+    case "C":
+      break;
+    case "T":
+      break;
+    case "P":
+      break;
+  }
+  state = newState;
+}
+
 function mousePressed() {
   interact();
 }
@@ -109,6 +203,9 @@ function mousePressed() {
 function keyPressed() {
   if (key === "z") {
     interact();
+  }
+  if ((key === ESCAPE) && (state in ["I", "D"])) {
+    changeState("P");
   }
 }
 
@@ -164,26 +261,6 @@ function movingRect(px, py, lx, ly) {
 
 function movingText(string, px, py) {
   text(string, px + 200 - x, py + 200 - y);
-}
-
-function textbox(newStroke) {
-  circle((width / 2) - (width * 4) / 10, (height * 8)/10, 40);
-  circle((width / 2) - (width * 4) / 10, (height * 9)/10, 40);
-  circle((width / 2) + (width * 4) / 10, (height * 8)/10, 40);
-  circle((width / 2) + (width * 4) / 10, (height * 9)/10, 40);
-  noStroke();
-  rect(width / 2, (height * 17)/20, (width * 8) / 10, (height * 1) / 5);
-  rect(width / 2, (height * 17)/20, (width * 9) / 10, (height * 1) / 10);
-  stroke(newStroke);
-  line((width / 2) - (width * 4) / 10, (height * 19)/20, (width / 2) + (width * 4) / 10, (height * 19)/20);
-  line((width / 2) - (width * 4) / 10, (height * 15)/20, (width / 2) + (width * 4) / 10, (height * 15)/20);
-  line((width / 2) - (width * 9) / 20, (height * 16)/20, (width / 2) - (width * 9) / 20, (height * 18)/20);
-  line((width / 2) + (width * 9) / 20, (height * 16)/20, (width / 2) + (width * 9) / 20, (height * 18)/20);
-
-  let string = "FATAL ERROR!";
-  let speaker = "";
-
-  text(string, width / 2, (height * 17)/20, (width*9)/10,(height*1)/5);
 }
 
 class bossSphere {
