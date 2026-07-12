@@ -21,7 +21,7 @@ let state = "I";
 
 let x = 200;
 let y = 200;
-let s = 300;
+let s = 999;
 /*
   SCENE GUIDE
   0 = Real Home
@@ -44,6 +44,7 @@ let s = 300;
   301 = Scene Select Screen
   302 = Credits Screen
   303 = Disclaimer Screen
+  999 = Pre-Initiation
 */
 
 let dialogueFile;
