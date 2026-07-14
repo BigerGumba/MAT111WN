@@ -167,17 +167,57 @@ function draw() {
     case 300:
       background(0);
       image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
+
+      let startButton = createButton("");
+      startButton.position(50,560);
+      startButton.size(700,72);
+      startButton.hide();
+
       if (flag[0]) {
         image(menuSS[2],200 - menuSS[2].width,600, menuSS[2].width*2, menuSS[2].height*2);
+        startButton.mousePressed(function() {
+          s = 301;
+        });
       }
       else {
         image(menuSS[1],50,560, menuSS[1].width*2, menuSS[1].height*2);
+        startButton.mousePressed(function() {
+          s = 200;
+        });
       }
-      image(menuSS[4],50,640, menuSS[4].width*2, menuSS[4].height*2)
+
+      let discButton = createButton("");
+      discButton.position(50,640);
+      discButton.size(700,72);
+      discButton.mousePressed(buttonPressed(1));
+      discButton.hide();
+
+      discButton.mousePressed(function() {
+        s = 302;
+      } );
+
+      image(menuSS[4],50,640, menuSS[4].width*2, menuSS[4].height*2);
+
       break;
     case 301:
+      background(0);
       break;
     case 302:
+      background(0);
+      image(menuSS[5],0,-100,800,800);
+
+      let backButton = createButton("");
+      backButton.position(50,720);
+      backButton.size(700,72);
+      backButton.mousePressed(buttonPressed(10));
+      backButton.hide();
+
+      backButton.mousePressed(function() {
+        s = 300;
+      });
+
+      image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
+
       break;
     case 303:
       break;
@@ -199,18 +239,6 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) {
       x+= -0.2 * deltaTime;
     }
-    if (x < -150) {
-      x = 549;
-    }
-    if (x > 550) {
-      x = -149;
-    }
-    if (y < -150) {
-      y = 549;
-    }
-    if (y > 550) {
-      y = -149;
-    }
   }
 }
 
@@ -230,8 +258,23 @@ function changeState(newState) {
   state = newState;
 }
 
-function mousePressed() {
-  interact();
+function buttonPressed(id) {
+  switch (id) {
+    case 0:
+      if (flag[0]) {
+        s = 301;
+      }
+      else {
+        s = 200;
+      }
+      break;
+    case 1:
+      s = 302;
+      break;
+    case 10:
+      s = 300;
+      break;
+  }
 }
 
 function keyPressed() {
