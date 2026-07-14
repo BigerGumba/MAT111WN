@@ -1,4 +1,4 @@
-let flag = [true, 
+let flag = [false, 
             false, false, false, false, false,
             false, false, false, false
 ];
@@ -65,6 +65,8 @@ class dialogue_box {
     this.speaker = "";
   }
   boxDraw() {
+    fill(0);
+    stroke(255);
     circle((width / 2) - (width * 4) / 10, (height * 8)/10, 40);
     circle((width / 2) - (width * 4) / 10, (height * 9)/10, 40);
     circle((width / 2) + (width * 4) / 10, (height * 8)/10, 40);
@@ -103,11 +105,11 @@ let enviroSSReal = [];
 function preload() {
   menuSS.push(loadImage("./assets/menu/gamelogo.png"));
   menuSS.push(loadImage("./assets/menu/menu_newgame.png"));
+  menuSS.push(loadImage("./assets/menu/menu_sceneselect_on.png"));
   menuSS.push(loadImage("./assets/menu/menu_back.png"));
   menuSS.push(loadImage("./assets/menu/menu_disclaimer.png"));
   menuSS.push(loadImage("./assets/menu/menu_disclaimertext.png"));
   menuSS.push(loadImage("./assets/menu/menu_sceneselect_off.png"));
-  menuSS.push(loadImage("./assets/menu/menu_sceneselect_on.png"));
   menuSS.push(loadImage("./assets/menu/menu_ss1.png"));
   menuSS.push(loadImage("./assets/menu/menu_ss2.png"));
   menuSS.push(loadImage("./assets/menu/menu_ss3.png"));
@@ -164,7 +166,14 @@ function draw() {
       break;
     case 300:
       background(0);
-      image(menuSS[0], 400, 100);
+      image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
+      if (flag[0]) {
+        image(menuSS[2],200 - menuSS[2].width,600, menuSS[2].width*2, menuSS[2].height*2);
+      }
+      else {
+        image(menuSS[1],50,560, menuSS[1].width*2, menuSS[1].height*2);
+      }
+      image(menuSS[4],50,640, menuSS[4].width*2, menuSS[4].height*2)
       break;
     case 301:
       break;
