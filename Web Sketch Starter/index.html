@@ -15,11 +15,8 @@
     <div id="sketch"></div>
     <button id="play_button">Begin.</button>
     <script src="./sketch.js" defer></script>
-    <script type="module" defer>
-      import {flag} from "sketch";
-      import {s} from "sketch";
-
-      const playButton = document.getElementByID("play_button");
+    <script>
+      const playButton = document.getElementById("play_button");
 
       function toggle() {
         if (flag[7]) {

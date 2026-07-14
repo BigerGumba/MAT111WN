@@ -1,4 +1,4 @@
-export let flag = [true, 
+let flag = [true, 
             false, false, false, false, false,
             false, false, false, false
 ];
@@ -29,7 +29,7 @@ let state = "T";
 
 let x = 200;
 let y = 200;
-export let s = 999;
+let s = 999;
 /*
   SCENE GUIDE
   0 = Real Home
@@ -86,7 +86,9 @@ class dialogue_box {
 
 let menuSS = [];
 
-let charSS = [];
+let charSSReal = [];
+
+let charSSVirt = [];
 
 let bossSS = [];
 
@@ -99,30 +101,29 @@ let enviroSSDeep = [];
 let enviroSSReal = [];
 
 function preload() {
-  menuSS.push(load("./assets/menu/gamelogo.png"));
-  menuSS.push(load("./assets/menu/menu_newgame.png"));
-  menuSS.push(load("./assets/menu/menu_back.png"));
-  menuSS.push(load("./assets/menu/menu_disclaimer.png"));
-  menuSS.push(load("./assets/menu/menu_disclaimertext.png"));
-  menuSS.push(load("./assets/menu/menu_sceneselect_off.png"));
-  menuSS.push(load("./assets/menu/menu_sceneselect_on.png"));
-  menuSS.push(load("./assets/menu/menu_ss1.png"));
-  menuSS.push(load("./assets/menu/menu_ss2.png"));
-  menuSS.push(load("./assets/menu/menu_ss3.png"));
-  menuSS.push(load("./assets/menu/menu_ss4.png"));
-  menuSS.push(load("./assets/menu/menu_ss5.png"));
-  menuSS.push(load("./assets/menu/menu_ss6.png"));
-  menuSS.push(load("./assets/menu/menu_ss7.png"));
-  menuSS.push(load("./assets/menu/menu_sslocked.png"));
+  menuSS.push(loadImage("./assets/menu/gamelogo.png"));
+  menuSS.push(loadImage("./assets/menu/menu_newgame.png"));
+  menuSS.push(loadImage("./assets/menu/menu_back.png"));
+  menuSS.push(loadImage("./assets/menu/menu_disclaimer.png"));
+  menuSS.push(loadImage("./assets/menu/menu_disclaimertext.png"));
+  menuSS.push(loadImage("./assets/menu/menu_sceneselect_off.png"));
+  menuSS.push(loadImage("./assets/menu/menu_sceneselect_on.png"));
+  menuSS.push(loadImage("./assets/menu/menu_ss1.png"));
+  menuSS.push(loadImage("./assets/menu/menu_ss2.png"));
+  menuSS.push(loadImage("./assets/menu/menu_ss3.png"));
+  menuSS.push(loadImage("./assets/menu/menu_ss4.png"));
+  menuSS.push(loadImage("./assets/menu/menu_ss5.png"));
+  menuSS.push(loadImage("./assets/menu/menu_ss6.png"));
+  menuSS.push(loadImage("./assets/menu/menu_ss7.png"));
+  menuSS.push(loadImage("./assets/menu/menu_sslocked.png"));
 }
 
 async function setup() {
   dialogueFile = await fetch("./dialogue.json");
-  const c = createCanvas(400, 400);
+  const c = createCanvas(800, 800);
   c.parent('sketch');
 
   rectMode(CENTER);
-  imageMode(CENTER);
   textAlign(CENTER,CENTER);
   noSmooth();
 }
