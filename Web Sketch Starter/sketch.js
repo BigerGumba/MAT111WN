@@ -99,25 +99,25 @@ let enviroSSDeep = [];
 let enviroSSReal = [];
 
 function preload() {
-  menuSS.push(load("menu/gamelogo.png"));
-  menuSS.push(load("menu/menu_newgame.png"));
-  menuSS.push(load("menu/menu_back.png"));
-  menuSS.push(load("menu/menu_disclaimer.png"));
-  menuSS.push(load("menu/menu_disclaimertext.png"));
-  menuSS.push(load("menu/menu_sceneselect_off.png"));
-  menuSS.push(load("menu/menu_sceneselect_on.png"));
-  menuSS.push(load("menu/menu_ss1.png"));
-  menuSS.push(load("menu/menu_ss2.png"));
-  menuSS.push(load("menu/menu_ss3.png"));
-  menuSS.push(load("menu/menu_ss4.png"));
-  menuSS.push(load("menu/menu_ss5.png"));
-  menuSS.push(load("menu/menu_ss6.png"));
-  menuSS.push(load("menu/menu_ss7.png"));
-  menuSS.push(load("menu/menu_sslocked.png"));
+  menuSS.push(load("./assets/menu/gamelogo.png"));
+  menuSS.push(load("./assets/menu/menu_newgame.png"));
+  menuSS.push(load("./assets/menu/menu_back.png"));
+  menuSS.push(load("./assets/menu/menu_disclaimer.png"));
+  menuSS.push(load("./assets/menu/menu_disclaimertext.png"));
+  menuSS.push(load("./assets/menu/menu_sceneselect_off.png"));
+  menuSS.push(load("./assets/menu/menu_sceneselect_on.png"));
+  menuSS.push(load("./assets/menu/menu_ss1.png"));
+  menuSS.push(load("./assets/menu/menu_ss2.png"));
+  menuSS.push(load("./assets/menu/menu_ss3.png"));
+  menuSS.push(load("./assets/menu/menu_ss4.png"));
+  menuSS.push(load("./assets/menu/menu_ss5.png"));
+  menuSS.push(load("./assets/menu/menu_ss6.png"));
+  menuSS.push(load("./assets/menu/menu_ss7.png"));
+  menuSS.push(load("./assets/menu/menu_sslocked.png"));
 }
 
 async function setup() {
-  dialogueFile = await fetch("dialogue.json");
+  dialogueFile = await fetch("./dialogue.json");
   const c = createCanvas(400, 400);
   c.parent('sketch');
 

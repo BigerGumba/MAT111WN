@@ -14,7 +14,7 @@
   <body>
     <div id="sketch"></div>
     <button id="play_button">Begin.</button>
-    <script src="sketch.js" defer></script>
+    <script src="./sketch.js" defer></script>
     <script type="module" defer>
       import {flag} from "sketch";
       import {s} from "sketch";
@@ -41,7 +41,6 @@
           document.getElementById("play_button").textContent = "Game in progress...";
         }
       }
-
       playButton.addEventListener("click", toggle);
     </script>
   </body>
