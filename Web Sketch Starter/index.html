@@ -11,36 +11,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
 
     <script src="sketch.js" defer></script>
+    <script type="module" defer>
+      const playButton = document.getElementByID("play_button");
+
+      import {flag} from "sketch";
+      import {s} from "sketch";
+
+      function toggle() {
+        if (flag[7]) {
+          if (flag[8]) {
+            if (flag[9]) {
+              document.getElementById("play_button").innerHTML = "Game has been saved.";
+            }
+            else {
+              document.getElementById("play_button").innerHTML = "Save?";
+            }
+          }
+          else {
+            document.getElementById("play_button").innerHTML = "Game in progress...";
+          }
+        }
+        else {
+          flag[7] = true;
+          s = 300;
+          document.getElementById("play_button").innerHTML = "Game in progress...";
+        }
+      }
+
+      playButton.addEventListener("click", toggle);
+    </script>
   </head>
 
   <body>
     <div id="sketch"></div>
-    <button id="play_button" type="button" onclick="toggle()">Begin.</button>
+    <button id="play_button">Begin.</button>
   </body>
-  <script type="module">
-    import {flag} from "sketch";
-    import {s} from "sketch";
-
-    function toggle() {
-      if (flag[7]) {
-        if (flag[8]) {
-          if (flag[9]) {
-            document.getElementById("play_button").innerHTML = "Game has been saved.";
-          }
-          else {
-            document.getElementById("play_button").innerHTML = "Save?";
-          }
-        }
-        else {
-          document.getElementById("play_button").innerHTML = "Game in progress...";
-        }
-      }
-      else {
-        flag[7] = true;
-        s = 300;
-        document.getElementById("play_button").innerHTML = "Game in progress...";
-      }
-    }
-  </script>
-
 </html>
