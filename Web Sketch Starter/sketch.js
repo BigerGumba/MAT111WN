@@ -128,6 +128,42 @@ async function setup() {
   rectMode(CENTER);
   textAlign(CENTER,CENTER);
   noSmooth();
+
+  let startButton = createButton("");
+  startButton.position(50,560);
+  startButton.size(700,72);
+  startButton.hide();
+  startButton.mousePressed(function() {
+    startButton.attribute('disabled', '');
+    if (flag[0]) {
+      s = 301;
+    }
+    else {
+      s = 200;
+    }
+  });
+
+  let discButton = createButton("");
+  discButton.position(50,640);
+  discButton.size(700,72);
+  discButton.mousePressed(buttonPressed(1));
+  discButton.hide();
+
+  discButton.mousePressed(function() {
+    discButton.attribute('disabled', '');
+    s = 302;
+  });
+
+  let backButton = createButton("");
+  backButton.position(50,720);
+  backButton.size(700,72);
+  backButton.mousePressed(buttonPressed(10));
+  backButton.hide();
+
+  backButton.mousePressed(function() {
+    backButton.attribute('disabled', '');
+    s = 300;
+  });
 }
 
 function draw() {
@@ -168,55 +204,31 @@ function draw() {
       background(0);
       image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
 
-      let startButton = createButton("");
-      startButton.position(50,560);
-      startButton.size(700,72);
-      startButton.hide();
-
       if (flag[0]) {
         image(menuSS[2],200 - menuSS[2].width,600, menuSS[2].width*2, menuSS[2].height*2);
-        startButton.mousePressed(function() {
-          s = 301;
-        });
       }
       else {
         image(menuSS[1],50,560, menuSS[1].width*2, menuSS[1].height*2);
-        startButton.mousePressed(function() {
-          s = 200;
-        });
       }
 
-      let discButton = createButton("");
-      discButton.position(50,640);
-      discButton.size(700,72);
-      discButton.mousePressed(buttonPressed(1));
-      discButton.hide();
-
-      discButton.mousePressed(function() {
-        s = 302;
-      } );
-
       image(menuSS[4],50,640, menuSS[4].width*2, menuSS[4].height*2);
+      startButton.removeAttribute('disabled');
+      discButton.removeAttribute('disabled');
 
       break;
     case 301:
       background(0);
+
+      image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
+      backButton.removeAttribute('disabled');
+
       break;
     case 302:
       background(0);
       image(menuSS[5],0,-100,800,800);
 
-      let backButton = createButton("");
-      backButton.position(50,720);
-      backButton.size(700,72);
-      backButton.mousePressed(buttonPressed(10));
-      backButton.hide();
-
-      backButton.mousePressed(function() {
-        s = 300;
-      });
-
       image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
+      backButton.removeAttribute('disabled');
 
       break;
     case 303:
