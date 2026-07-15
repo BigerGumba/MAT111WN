@@ -15,7 +15,7 @@ let flag = [false,
   8 = Paused?
   9 = In Save Animation?
 */
-let defaultFlags = [true];
+let defaultFlags = [false];
 
 let state = "T";
 /*
@@ -56,6 +56,7 @@ let s = 999;
 */
 
 let dialogueFile;
+let tID = 0;
 
 class dialogue_box {
   constructor(tID) {
@@ -120,8 +121,14 @@ function preload() {
   menuSS.push(loadImage("./assets/menu/menu_sslocked.png"));
 }
 
+let startButton;
+let discButton;
+let backButton;
+
 async function setup() {
-  dialogueFile = await fetch("./dialogue.json");
+  const response = await fetch("./dialogue.json");
+  dialogueFile = await response.json();
+
   const c = createCanvas(800, 800);
   c.parent('sketch');
 
@@ -129,40 +136,40 @@ async function setup() {
   textAlign(CENTER,CENTER);
   noSmooth();
 
-  let startButton = createButton("");
+  startButton = createButton("");
   startButton.position(50,560);
   startButton.size(700,72);
-  startButton.hide();
+  startButton.style("opacity", "100");
+
   startButton.mousePressed(function() {
-    startButton.attribute('disabled', '');
+    startButton.hide();
     if (flag[0]) {
       s = 301;
     }
     else {
+      flag[0] = true;
       s = 200;
     }
   });
 
-  let discButton = createButton("");
+  discButton = createButton("");
   discButton.position(50,640);
   discButton.size(700,72);
-  discButton.mousePressed(buttonPressed(1));
-  discButton.hide();
+  discButton.style("opacity", "100");
 
   discButton.mousePressed(function() {
-    discButton.attribute('disabled', '');
     s = 302;
+    discButton.hide();
   });
 
-  let backButton = createButton("");
+  backButton = createButton("");
   backButton.position(50,720);
   backButton.size(700,72);
-  backButton.mousePressed(buttonPressed(10));
-  backButton.hide();
+  backButton.style("opacity", "0");
 
   backButton.mousePressed(function() {
-    backButton.attribute('disabled', '');
     s = 300;
+    backButton.hide();
   });
 }
 
@@ -212,15 +219,14 @@ function draw() {
       }
 
       image(menuSS[4],50,640, menuSS[4].width*2, menuSS[4].height*2);
-      startButton.removeAttribute('disabled');
-      discButton.removeAttribute('disabled');
-
+      startButton.show();
+      discButton.show()
       break;
     case 301:
       background(0);
 
       image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
-      backButton.removeAttribute('disabled');
+      backButton.show();
 
       break;
     case 302:
@@ -228,7 +234,7 @@ function draw() {
       image(menuSS[5],0,-100,800,800);
 
       image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
-      backButton.removeAttribute('disabled');
+      backButton.show();
 
       break;
     case 303:
@@ -270,78 +276,13 @@ function changeState(newState) {
   state = newState;
 }
 
-function buttonPressed(id) {
-  switch (id) {
-    case 0:
-      if (flag[0]) {
-        s = 301;
-      }
-      else {
-        s = 200;
-      }
-      break;
-    case 1:
-      s = 302;
-      break;
-    case 10:
-      s = 300;
-      break;
-  }
-}
-
 function keyPressed() {
   if (key === "z") {
     interact();
   }
-  if ((key === ESCAPE) && (state in ["I", "D"])) {
+  if ((keyCode === ESCAPE) && ((state == "I") || (state == "D"))) {
     changeState("P");
   }
-}
-
-function interact() {
-  if (state == "D") {
-    nID = tID;
-    switch (tID) {
-      case 0:
-        state = "I";
-        break;
-      case 1:
-        nID = 2;
-        break;
-      case 2:
-        nID = 3;
-        break;
-      case 3:
-        nID = 4;
-        break;
-      case 4:
-        nID = 5;
-        break;
-      case 5:
-        state = "I";
-        break;
-      case 6:
-        state = "I";
-        break;
-    }
-    tID = nID;
-  }
-  else {
-    if (detectArea(150, 60, 250, 140) && state == "I") {
-      state = "D";
-      if (flag[0]) {
-        flag[0] = false;
-        tID = 1;
-      }
-      else {
-        tID = 6;
-      }
-    }
-  }
-}
-
-function detectArea(tlx, tly, brx, bry) {
-  return ((x > tlx) && (x < brx) && (y > tly) && (y < bry));
 }
 
 function movingRect(px, py, lx, ly) {
