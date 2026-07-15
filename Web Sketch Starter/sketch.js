@@ -33,15 +33,17 @@ let s = 999;
 /*
   SCENE GUIDE
   0 = Real Home
-  1 = Virtual Home
-  2 = Work Hub
-  3 = First Layer
-  4 = Second Layer
-  5 = Third Layer / Chase
-  6 = Real Home Blackout
-  7 = Hallway
-  8 = Elevator Room
-  9 = Boss Room
+  1 = Virtual Bedroom
+  2 = Virtual Living Room
+  3 = Balcony Warp Zone
+  20 = Work Hub
+  30 = First Layer
+  40 = Second Layer
+  50 = Third Layer / Chase
+  60 = Real Home Blackout
+  61 = Hallway
+  62 = Elevator Room
+  63 = Boss Room
   100 = Ending 0
   101 = Ending 1
   102 = Ending 2
