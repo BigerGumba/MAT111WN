@@ -15,30 +15,5 @@
     <div id="sketch"></div>
     <button id="play_button">Begin.</button>
     <script src="./sketch.js" defer></script>
-    <script>
-      const playButton = document.getElementById("play_button");
-
-      function toggle() {
-        if (flag[7]) {
-          if (flag[8]) {
-            if (flag[9]) {
-              document.getElementById("play_button").textContent = "Game has been saved.";
-            }
-            else {
-              document.getElementById("play_button").textContent = "Save?";
-            }
-          }
-          else {
-            document.getElementById("play_button").textContent = "Game in progress...";
-          }
-        }
-        else {
-          flag[7] = true;
-          s = 300;
-          document.getElementById("play_button").textContent = "Game in progress...";
-        }
-      }
-      playButton.addEventListener("click", toggle);
-    </script>
   </body>
 </html>

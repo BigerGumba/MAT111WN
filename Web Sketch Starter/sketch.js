@@ -37,6 +37,7 @@ let s = 999;
   2 = Virtual Living Room
   3 = Balcony Warp Zone
   20 = Work Hub
+  21 = Side Office
   30 = First Layer
   40 = Second Layer
   50 = Third Layer / Chase
@@ -126,9 +127,34 @@ function preload() {
 let startButton;
 let discButton;
 let backButton;
+const playButton = document.getElementById("play_button");
+
+function toggle() {
+  if (flag[7]) {
+    if (flag[8]) {
+      if (flag[9]) {
+        document.getElementById("play_button").textContent = "Game has been saved.";
+      }
+      else {
+        document.getElementById("play_button").textContent = "Save?";
+      }
+    }
+    else {
+      document.getElementById("play_button").textContent = "Game in progress...";
+    }
+  }
+  else {
+    flag[7] = true;
+    changeScene(300);
+    document.getElementById("play_button").textContent = "Game in progress...";
+  }
+}
 
 async function setup() {
   const response = await fetch("./dialogue.json");
+  
+  playButton.addEventListener("click", toggle);
+
   dialogueFile = await response.json();
 
   const c = createCanvas(800, 800);
@@ -144,15 +170,15 @@ async function setup() {
   startButton.style("opacity", "100");
 
   startButton.mousePressed(function() {
-    startButton.hide();
     if (flag[0]) {
-      s = 301;
+      changeScene(301);
     }
     else {
       flag[0] = true;
-      s = 200;
+      changeScene(200);
     }
   });
+  startButton.hide();
 
   discButton = createButton("");
   discButton.position(50,640);
@@ -160,9 +186,9 @@ async function setup() {
   discButton.style("opacity", "100");
 
   discButton.mousePressed(function() {
-    s = 302;
-    discButton.hide();
+    changeScene(302);
   });
+  discButton.hide();
 
   backButton = createButton("");
   backButton.position(50,720);
@@ -170,9 +196,30 @@ async function setup() {
   backButton.style("opacity", "0");
 
   backButton.mousePressed(function() {
-    s = 300;
-    backButton.hide();
+   changeScene(300);
   });
+  backButton.hide();
+}
+
+function changeScene(newId) {
+  startButton.hide();
+  discButton.hide();
+  backButton.hide();
+
+  switch (newId) {
+    case 300:
+      startButton.show();
+      discButton.show();
+      break;
+    case 301:
+      backButton.show();
+      break;
+    case 302:
+      backButton.show();
+      break;
+  }
+
+  s = newId;
 }
 
 function draw() {
@@ -221,14 +268,11 @@ function draw() {
       }
 
       image(menuSS[4],50,640, menuSS[4].width*2, menuSS[4].height*2);
-      startButton.show();
-      discButton.show()
       break;
     case 301:
       background(0);
 
       image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
-      backButton.show();
 
       break;
     case 302:
@@ -236,7 +280,6 @@ function draw() {
       image(menuSS[5],0,-100,800,800);
 
       image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
-      backButton.show();
 
       break;
     case 303:
