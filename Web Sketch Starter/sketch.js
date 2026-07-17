@@ -53,8 +53,8 @@ let s = 999;
   200 = Intro Cutscene
   300 = Title Screen
   301 = Scene Select Screen
-  302 = Credits Screen
-  303 = Disclaimer Screen
+  302 = Disclaimer Screen
+  303 = Credits Screen
   999 = Pre-Initiation
 */
 
@@ -113,6 +113,7 @@ function preload() {
   menuSS.push(loadImage("./assets/menu/menu_back.png"));
   menuSS.push(loadImage("./assets/menu/menu_disclaimer.png"));
   menuSS.push(loadImage("./assets/menu/menu_disclaimertext.png"));
+  menuSS.push(loadImage("./assets/menu/menu_credits.png"));
   menuSS.push(loadImage("./assets/menu/menu_sceneselect_off.png"));
   menuSS.push(loadImage("./assets/menu/menu_ss1.png"));
   menuSS.push(loadImage("./assets/menu/menu_ss2.png"));
@@ -127,6 +128,7 @@ function preload() {
 let startButton;
 let discButton;
 let backButton;
+let credButton;
 const playButton = document.getElementById("play_button");
 
 function toggle() {
@@ -150,6 +152,8 @@ function toggle() {
   }
 }
 
+let origin = createVector(0,0);
+
 async function setup() {
   const response = await fetch("./dialogue.json");
   
@@ -159,13 +163,14 @@ async function setup() {
 
   const c = createCanvas(800, 800);
   c.parent('sketch');
+  origin = c.position();
 
   rectMode(CENTER);
   textAlign(CENTER,CENTER);
   noSmooth();
 
   startButton = createButton("");
-  startButton.position(50,560);
+  startButton.position(50 + origin.x,480 + origin.y);
   startButton.size(700,72);
   startButton.style("opacity", "100");
 
@@ -178,44 +183,57 @@ async function setup() {
       changeScene(200);
     }
   });
-  startButton.hide();
+  startButton.attribute('disabled', '');
 
   discButton = createButton("");
-  discButton.position(50,640);
+  discButton.position(50 + origin.x,560 + origin.y);
   discButton.size(700,72);
   discButton.style("opacity", "100");
 
   discButton.mousePressed(function() {
     changeScene(302);
   });
-  discButton.hide();
+  discButton.attribute('disabled', '');
 
   backButton = createButton("");
-  backButton.position(50,720);
+  backButton.position(50 + origin.x,640 + origin.y);
   backButton.size(700,72);
   backButton.style("opacity", "0");
 
   backButton.mousePressed(function() {
    changeScene(300);
   });
-  backButton.hide();
+  backButton.attribute('disabled', '');
+
+  credButton = createButton("");
+  credButton.position(50 + origin.x,640 + origin.y);
+  credButton.size(700,72);
+  credButton.style("opacity","0");
+
+  credButton.mousePressed(function() {
+    changeScene(303);
+  });
+  credButton.attribute('disabled', '');
 }
 
 function changeScene(newId) {
-  startButton.hide();
-  discButton.hide();
-  backButton.hide();
+  startButton.attribute('disabled', '');
+  discButton.attribute('disabled', '');
+  backButton.attribute('disabled', '');
 
   switch (newId) {
     case 300:
-      startButton.show();
-      discButton.show();
+      startButton.removeAttribute('disabled');
+      discButton.removeAttribute('disabled');
       break;
     case 301:
-      backButton.show();
+      backButton.removeAttribute('disabled');
       break;
     case 302:
-      backButton.show();
+      backButton.removeAttribute('disabled');
+      break;
+    case 303:
+      backButton.removeAttribute('disabled');
       break;
   }
 
@@ -261,28 +279,28 @@ function draw() {
       image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
 
       if (flag[0]) {
-        image(menuSS[2],200 - menuSS[2].width,600, menuSS[2].width*2, menuSS[2].height*2);
+        image(menuSS[2],50,480, menuSS[2].width*2, menuSS[2].height*2);
       }
       else {
-        image(menuSS[1],50,560, menuSS[1].width*2, menuSS[1].height*2);
+        image(menuSS[1],50,480, menuSS[1].width*2, menuSS[1].height*2);
       }
 
-      image(menuSS[4],50,640, menuSS[4].width*2, menuSS[4].height*2);
+      image(menuSS[4],50,560, menuSS[4].width*2, menuSS[4].height*2);
+      image(menuSS[6],50,640, menuSS[6].width*2, menuSS[6].height*2);
       break;
     case 301:
       background(0);
-
       image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
 
       break;
     case 302:
       background(0);
       image(menuSS[5],0,-100,800,800);
-
       image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
-
       break;
     case 303:
+      background(0);
+      image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
       break;
     case 999:
       background(0);
