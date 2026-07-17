@@ -152,8 +152,6 @@ function toggle() {
   }
 }
 
-let origin = createVector(0,0);
-
 async function setup() {
   const response = await fetch("./dialogue.json");
   
@@ -163,7 +161,7 @@ async function setup() {
 
   const c = createCanvas(800, 800);
   c.parent('sketch');
-  origin = c.position();
+  let origin = c.position();
 
   rectMode(CENTER);
   textAlign(CENTER,CENTER);
@@ -172,7 +170,7 @@ async function setup() {
   startButton = createButton("");
   startButton.position(50 + origin.x,480 + origin.y);
   startButton.size(700,72);
-  startButton.style("opacity", "100");
+  startButton.style("opacity", "0");
 
   startButton.mousePressed(function() {
     if (flag[0]) {
@@ -188,7 +186,7 @@ async function setup() {
   discButton = createButton("");
   discButton.position(50 + origin.x,560 + origin.y);
   discButton.size(700,72);
-  discButton.style("opacity", "100");
+  discButton.style("opacity", "0");
 
   discButton.mousePressed(function() {
     changeScene(302);
@@ -216,23 +214,47 @@ async function setup() {
   credButton.attribute('disabled', '');
 }
 
+function dialogueBox() {
+  function constructor() {
+
+  }
+  function drawer() {
+    
+  }
+  function skip() {
+
+  }
+}
+
 function changeScene(newId) {
+  startButton.style("z-index", "-50");
+  discButton.style("z-index", "-50");
+  credButton.style("z-index", "-50");
+  backButton.style("z-index", "-50");
   startButton.attribute('disabled', '');
   discButton.attribute('disabled', '');
+  credButton.attribute('disabled', '');
   backButton.attribute('disabled', '');
 
   switch (newId) {
     case 300:
+      startButton.style("z-index", "1");
+      discButton.style("z-index", "1");
+      credButton.style("z-index", "1");
       startButton.removeAttribute('disabled');
       discButton.removeAttribute('disabled');
+      credButton.removeAttribute('disabled');
       break;
     case 301:
+      backButton.style("z-index", "1");
       backButton.removeAttribute('disabled');
       break;
     case 302:
+      backButton.style("z-index", "1");
       backButton.removeAttribute('disabled');
       break;
     case 303:
+      backButton.style("z-index", "1");
       backButton.removeAttribute('disabled');
       break;
   }
@@ -273,6 +295,7 @@ function draw() {
     case 104:
       break;
     case 200:
+      background(0);
       break;
     case 300:
       background(0);
