@@ -59,7 +59,6 @@ let s = 999;
 */
 
 let dialogueFile;
-let tID = 0;
 
 class dialogue_box {
   constructor(tID) {
@@ -69,24 +68,34 @@ class dialogue_box {
     this.speaker = "";
   }
   boxDraw() {
-    fill(0);
-    stroke(255);
-    circle((width / 2) - (width * 4) / 10, (height * 8)/10, 40);
-    circle((width / 2) - (width * 4) / 10, (height * 9)/10, 40);
-    circle((width / 2) + (width * 4) / 10, (height * 8)/10, 40);
-    circle((width / 2) + (width * 4) / 10, (height * 9)/10, 40);
-    noStroke();
-    rect(width / 2, (height * 17)/20, (width * 8) / 10, (height * 1) / 5);
-    rect(width / 2, (height * 17)/20, (width * 9) / 10, (height * 1) / 10);
-    stroke(newStroke);
-    line((width / 2) - (width * 4) / 10, (height * 19)/20, (width / 2) + (width * 4) / 10, (height * 19)/20);
-    line((width / 2) - (width * 4) / 10, (height * 15)/20, (width / 2) + (width * 4) / 10, (height * 15)/20);
-    line((width / 2) - (width * 9) / 20, (height * 16)/20, (width / 2) - (width * 9) / 20, (height * 18)/20);
-    line((width / 2) + (width * 9) / 20, (height * 16)/20, (width / 2) + (width * 9) / 20, (height * 18)/20);
+    stroke(255); 
+    fill(0); 
+    
+    circle(60,560,40); 
+    circle(240,560,40); 
 
-
-    text(this.string, width / 2, (height * 17)/20, (width*9)/10,(height*1)/5);
-
+    noStroke(); 
+    rect(150,580,180,80); 
+    rect(150,600,220,80); 
+    
+    stroke(255); 
+    line(60,540,240,540); 
+    line(260,560,260,600); 
+    
+    circle(80, 640, 80); 
+    circle(80, 720, 80); 
+    circle(720, 640, 80); 
+    circle(720, 720, 80); 
+    
+    noStroke(); 
+    rect(400,680,640,160); 
+    rect(400,680,720,80); 
+    
+    stroke(255); 
+    line(40,560,40,720); 
+    line(80,600,720,600); 
+    line(720,760,80,760); 
+    line(760,720,760,640);
   }
 }
 
@@ -212,18 +221,6 @@ async function setup() {
     changeScene(303);
   });
   credButton.attribute('disabled', '');
-}
-
-function dialogueBox() {
-  function constructor() {
-
-  }
-  function drawer() {
-    
-  }
-  function skip() {
-
-  }
 }
 
 function changeScene(newId) {
