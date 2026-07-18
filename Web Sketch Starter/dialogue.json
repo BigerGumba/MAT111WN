@@ -1,39 +1,41 @@
 {
   "GUIDE-DO-NOT-CALL":{
     "1":"/p-Pause for five frames",
-    "2":"/l-Pause for thirty frames",
+    "2":"/l-Long Pause for thirty frames",
     "3":"/r-Reveal text until next command",
-    "4":"/ -Cancel /r",
-    "5":"/s-Advance Speaker",
-    "6":"/n-End of text block or Speaker name",
-    "7":"/e-End of dialogue"
+    "4":"/c-Cancel /r",
+    "5":"/s-Speaker Advancement",
+    "6":"/e-End of text block",
+    "7":"/k-Advance text automatically when finished",
+    "8":"//-Print Forward Slash",
+    "9":"/!##-Trigger Custom Event"
   },
-  "IntroductoryCutscene":{
-    "speaker":"",
-    "text":""
+  "introductoryCutscene":{
+    "speaker":"[]",
+    "text":"Initialized dialogue extension./p Press Z to continue./eWelcome-/l to Exelsior's World./eBut you may be wondering, just what kind of world is this?/eSome may call it ugly, or wrong, or cruel.../phowever../eBeauty is in the eye of the beholder./pAlthough you are not that./eBut you may become the beholder, if you have what it takes to question the nature of reality./eBut for now,/l you must work./e/!00"
   },
-  "BossMonologue00":{
-    "speaker":"Exelsior",
+  "bossMonologue00":{
+    "speaker":"[Exelsior]",
     "text":"Attention, /pOPERATOR0040."
   },
-  "Ending0":{
-    "speaker":"Exelsior/n",
+  "ending0":{
+    "speaker":"[Exelsior]",
     "text":""
   },
-  "Ending1":{
-    "speaker":"Exelsior/nOPERATOR0038/nOPERATOR0040/n",
+  "ending1":{
+    "speaker":"[Exelsior,OPERATOR0038,OPERATOR0040,]",
     "text":""
   },
-  "Ending2":{
-    "speaker":"",
+  "ending2":{
+    "speaker":"[]",
     "text":""
   },
-  "Ending3":{
-    "speaker":"Exelsior/n",
+  "ending3":{
+    "speaker":"[Exelsior]",
     "text":""
   },
-  "Ending4":{
-    "speaker":"",
+  "ending4":{
+    "speaker":"[]",
     "text":""
   }
 }

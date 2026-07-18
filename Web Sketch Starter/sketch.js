@@ -64,19 +64,33 @@ class dialogue_box {
   constructor(tID) {
     this.tID = tID;
     this.c = 0;
-    this.string = "";
+    this.lineList;
+    this.line = "";
+    this.speakerList;
     this.speaker = "";
-  }
-  boxDraw() {
-    stroke(255); 
-    fill(0); 
-    
-    circle(60,560,40); 
-    circle(240,560,40); 
+    let block;
 
-    noStroke(); 
-    rect(150,580,180,80); 
-    rect(150,600,220,80); 
+    switch (this.tID) {
+      case 0:
+        block = dialogueFile.introductoryCutscene;
+    }
+
+    this.lineList = block.text;
+    this.speakerList = block.speaker;
+  }
+  display() {
+    if (this.speaker != "") {
+      stroke(255); 
+      fill(0); 
+    
+      circle(60,560,40); 
+      circle(240,560,40); 
+
+      noStroke(); 
+      rect(150,580,180,80); 
+      rect(150,600,220,80);
+      line(40,560,40,640);
+    }
     
     stroke(255); 
     line(60,540,240,540); 
@@ -92,10 +106,26 @@ class dialogue_box {
     rect(400,680,720,80); 
     
     stroke(255); 
-    line(40,560,40,720); 
+    line(40,640,40,720); 
     line(80,600,720,600); 
     line(720,760,80,760); 
-    line(760,720,760,640);
+    line(760,640,760,720);
+  }
+}
+
+class screenOverlay {
+  constructor(cstart,cend,millis) {
+    this.cstart = cstart;
+    this.cend = cend;
+    this.timeLeft = millis;
+    this.duration = millis;
+  }
+  display(delta) {
+    if (this.timeLeft > 0) {
+      fill(lerpColor(this.cend, this.cstart, this.timeLeft/this.duration));
+      rect(-100,-100,1000,1000);
+      this.timeLeft -= delta;
+    }
   }
 }
 
@@ -163,10 +193,9 @@ function toggle() {
 
 async function setup() {
   const response = await fetch("./dialogue.json");
+  dialogueFile = await response.json();
   
   playButton.addEventListener("click", toggle);
-
-  dialogueFile = await response.json();
 
   const c = createCanvas(800, 800);
   c.parent('sketch');
@@ -177,7 +206,7 @@ async function setup() {
   noSmooth();
 
   startButton = createButton("");
-  startButton.position(50 + origin.x,480 + origin.y);
+  startButton.position(80 + origin.x,480 + origin.y);
   startButton.size(700,72);
   startButton.style("opacity", "0");
 
@@ -193,7 +222,7 @@ async function setup() {
   startButton.attribute('disabled', '');
 
   discButton = createButton("");
-  discButton.position(50 + origin.x,560 + origin.y);
+  discButton.position(80 + origin.x,560 + origin.y);
   discButton.size(700,72);
   discButton.style("opacity", "0");
 
@@ -203,7 +232,7 @@ async function setup() {
   discButton.attribute('disabled', '');
 
   backButton = createButton("");
-  backButton.position(50 + origin.x,640 + origin.y);
+  backButton.position(80 + origin.x,640 + origin.y);
   backButton.size(700,72);
   backButton.style("opacity", "0");
 
@@ -213,7 +242,7 @@ async function setup() {
   backButton.attribute('disabled', '');
 
   credButton = createButton("");
-  credButton.position(50 + origin.x,640 + origin.y);
+  credButton.position(80 + origin.x,640 + origin.y);
   credButton.size(700,72);
   credButton.style("opacity","0");
 
@@ -299,28 +328,28 @@ function draw() {
       image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
 
       if (flag[0]) {
-        image(menuSS[2],50,480, menuSS[2].width*2, menuSS[2].height*2);
+        image(menuSS[2],80,480, menuSS[2].width*2, menuSS[2].height*2);
       }
       else {
-        image(menuSS[1],50,480, menuSS[1].width*2, menuSS[1].height*2);
+        image(menuSS[1],80,480, menuSS[1].width*2, menuSS[1].height*2);
       }
 
-      image(menuSS[4],50,560, menuSS[4].width*2, menuSS[4].height*2);
-      image(menuSS[6],50,640, menuSS[6].width*2, menuSS[6].height*2);
+      image(menuSS[4],80,560, menuSS[4].width*2, menuSS[4].height*2);
+      image(menuSS[6],80,640, menuSS[6].width*2, menuSS[6].height*2);
       break;
     case 301:
       background(0);
-      image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
+      image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
 
       break;
     case 302:
       background(0);
       image(menuSS[5],0,-100,800,800);
-      image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
+      image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
       break;
     case 303:
       background(0);
-      image(menuSS[3],50,640, menuSS[3].width*2, menuSS[3].height*2);
+      image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
       break;
     case 999:
       background(0);
