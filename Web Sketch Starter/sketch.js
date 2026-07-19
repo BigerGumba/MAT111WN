@@ -64,10 +64,14 @@ class dialogue_box {
   constructor(tID) {
     this.tID = tID;
     this.c = 0;
+    this.s = 0;
+    this.timer = 0;
+    this.defaultTime = 20;
     this.lineList;
     this.line = "";
     this.speakerList;
     this.speaker = "";
+    this.running = true;
     let block;
 
     switch (this.tID) {
@@ -110,6 +114,59 @@ class dialogue_box {
     line(80,600,720,600); 
     line(720,760,80,760); 
     line(760,640,760,720);
+
+    if (!this.running) {
+      return;
+    }
+    if (this.timer > 0) {
+      this.timer -= delta;
+      return;
+    }
+    this.c++;
+    let next = this.lineList[c];
+    this.timer = this.defaultTime;
+
+    if (!next) {
+      // TODO STOP
+    }
+
+    if (next == "/") {
+      this.c++;
+      switch (this.lineList[c]) {
+        case "p":
+          this.timer = 80;
+          break;
+        case "l":
+          this.timer = 300;
+          break;
+        case "r":
+          this.defaultTime = -1;
+          break;
+        case "n":
+          this.defaultTime = 20;
+          break;
+        case "s":
+          this.s++;
+          break;
+        case "e":
+          this.running = false;
+          break;
+        case "c":
+          this.line = "";
+          break;
+        case "/":
+          this.line += "/";
+          break;
+        case "!":
+          // TODO SPECIAL EVENTS
+          break;
+      }
+      this.c++;
+    }
+    else {
+      this.line += lineList[c];
+    }
+    this.c++;
   }
 }
 

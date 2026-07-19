@@ -3,10 +3,10 @@
     "1":"/p-Pause for five frames",
     "2":"/l-Long Pause for thirty frames",
     "3":"/r-Reveal text until next command",
-    "4":"/c-Cancel /r",
+    "4":"/n-Normal scroll /r",
     "5":"/s-Speaker Advancement",
     "6":"/e-End of text block",
-    "7":"/k-Advance text automatically when finished",
+    "7":"/c-Clear box",
     "8":"//-Print Forward Slash",
     "9":"/!##-Trigger Custom Event"
   },
