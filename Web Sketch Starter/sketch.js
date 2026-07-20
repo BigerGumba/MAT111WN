@@ -59,19 +59,21 @@ let s = 999;
 */
 
 let dialogueFile;
+let currDialogueBox;
 
-class dialogue_box {
+class dialogueBox {
   constructor(tID) {
     this.tID = tID;
+    this.storedState = state;
+    state = "D";
+
     this.c = 0;
     this.s = 0;
     this.timer = 0;
     this.defaultTime = 20;
-    this.lineList;
     this.line = "";
-    this.speakerList;
-    this.speaker = "";
     this.running = true;
+    this.skip = false;
     let block;
 
     switch (this.tID) {
@@ -82,23 +84,24 @@ class dialogue_box {
     this.lineList = block.text;
     this.speakerList = block.speaker;
   }
-  display() {
-    if (this.speaker != "") {
-      stroke(255); 
-      fill(0); 
-    
+  display(delta) {
+    stroke(255); 
+    fill(0); 
+    if (this.speakerList.length > 0) {
       circle(60,560,40); 
       circle(240,560,40); 
 
       noStroke(); 
       rect(150,580,180,80); 
       rect(150,600,220,80);
+
+      stroke(255); 
+      line(60,540,240,540); 
+      line(260,560,260,600); 
       line(40,560,40,640);
+
+      text(this.speakerList[this.s],150,580);
     }
-    
-    stroke(255); 
-    line(60,540,240,540); 
-    line(260,560,260,600); 
     
     circle(80, 640, 80); 
     circle(80, 720, 80); 
@@ -115,29 +118,33 @@ class dialogue_box {
     line(720,760,80,760); 
     line(760,640,760,720);
 
-    if (!this.running) {
+    fill(255);
+    text(this.line,400,680,600,80);
+
+    if (!this.running && !this.skip) {
       return;
     }
     if (this.timer > 0) {
       this.timer -= delta;
       return;
     }
-    this.c++;
-    let next = this.lineList[c];
+    let next = this.lineList[this.c];
     this.timer = this.defaultTime;
 
     if (!next) {
-      // TODO STOP
+      state = this.storedState;
+      currDialogueBox = null;
+      return;
     }
 
     if (next == "/") {
       this.c++;
-      switch (this.lineList[c]) {
+      switch (this.lineList[this.c]) {
         case "p":
-          this.timer = 80;
+          this.timer = 200;
           break;
         case "l":
-          this.timer = 300;
+          this.timer = 500;
           break;
         case "r":
           this.defaultTime = -1;
@@ -161,12 +168,21 @@ class dialogue_box {
           // TODO SPECIAL EVENTS
           break;
       }
-      this.c++;
     }
     else {
-      this.line += lineList[c];
+      this.line += this.lineList[this.c];
     }
     this.c++;
+  }
+  advance() {
+    if(this.running) {
+      this.skip = true;
+    }
+    else {
+      this.line = "";
+      this.running = true;
+      this.skip = false;
+    }
   }
 }
 
@@ -225,7 +241,7 @@ let startButton;
 let discButton;
 let backButton;
 let credButton;
-const playButton = document.getElementById("play_button");
+let playButton;
 
 function toggle() {
   if (flag[7]) {
@@ -251,7 +267,8 @@ function toggle() {
 async function setup() {
   const response = await fetch("./dialogue.json");
   dialogueFile = await response.json();
-  
+
+  playButton = document.getElementById("play_button");
   playButton.addEventListener("click", toggle);
 
   const c = createCanvas(800, 800);
@@ -260,6 +277,8 @@ async function setup() {
 
   rectMode(CENTER);
   textAlign(CENTER,CENTER);
+  textSize(32);
+
   noSmooth();
 
   startButton = createButton("");
@@ -320,6 +339,9 @@ function changeScene(newId) {
   backButton.attribute('disabled', '');
 
   switch (newId) {
+    case 200:
+      currDialogueBox = new dialogueBox(0);
+      break;
     case 300:
       startButton.style("z-index", "1");
       discButton.style("z-index", "1");
@@ -381,36 +403,24 @@ function draw() {
       background(0);
       break;
     case 300:
-      background(0);
-      image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
-
-      if (flag[0]) {
-        image(menuSS[2],80,480, menuSS[2].width*2, menuSS[2].height*2);
-      }
-      else {
-        image(menuSS[1],80,480, menuSS[1].width*2, menuSS[1].height*2);
-      }
-
-      image(menuSS[4],80,560, menuSS[4].width*2, menuSS[4].height*2);
-      image(menuSS[6],80,640, menuSS[6].width*2, menuSS[6].height*2);
+      s300();
       break;
     case 301:
-      background(0);
-      image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
-
+      s301();
       break;
     case 302:
-      background(0);
-      image(menuSS[5],0,-100,800,800);
-      image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
+      s302();
       break;
     case 303:
-      background(0);
-      image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
+      s303();
       break;
     case 999:
       background(0);
       return;
+  }
+
+  if (currDialogueBox) {
+    currDialogueBox.display(deltaTime);
   }
 
   if (state == "I") {
@@ -427,6 +437,37 @@ function draw() {
       x+= -0.2 * deltaTime;
     }
   }
+}
+
+function s300() {
+  background(0);
+  image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
+
+  if (flag[0]) {
+    image(menuSS[2],80,480, menuSS[2].width*2, menuSS[2].height*2);
+  }
+  else {
+    image(menuSS[1],80,480, menuSS[1].width*2, menuSS[1].height*2);
+  }
+
+  image(menuSS[4],80,560, menuSS[4].width*2, menuSS[4].height*2);
+  image(menuSS[6],80,640, menuSS[6].width*2, menuSS[6].height*2);
+}
+
+function s301() {
+  background(0);
+  image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
+}
+
+function s302() {
+  background(0);
+  image(menuSS[5],0,-100,800,800);
+  image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
+}
+
+function s303() {
+  background(0);
+  image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
 }
 
 function changeState(newState) {
@@ -447,7 +488,10 @@ function changeState(newState) {
 
 function keyPressed() {
   if (key === "z") {
-    interact();
+    switch (state) {
+      case "D":
+        currDialogueBox.advance();
+    }
   }
   if ((keyCode === ESCAPE) && ((state == "I") || (state == "D"))) {
     changeState("P");
