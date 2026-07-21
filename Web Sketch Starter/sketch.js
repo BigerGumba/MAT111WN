@@ -131,7 +131,7 @@ class dialogueBox {
     let next = this.lineList[this.c];
     this.timer = this.defaultTime;
 
-    if (!next) {
+    if (next == undefined) {
       state = this.storedState;
       currDialogueBox = null;
       return;
@@ -491,6 +491,7 @@ function keyPressed() {
     switch (state) {
       case "D":
         currDialogueBox.advance();
+        break;
     }
   }
   if ((keyCode === ESCAPE) && ((state == "I") || (state == "D"))) {
