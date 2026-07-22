@@ -70,6 +70,26 @@
     "speaker":["OPERATOR0040"],
     "text":"Some assorted gadgets./l Not much use since work gives me all the tools I'd ever need./e"
   },
+  "sc02Interact00":{
+    "speaker":["OPERATOR0040"],
+    "text":"Sometimes my boss is on here talking about some hip new joint in the city./l Or a global catastrophe./e"
+  },
+  "sc02Interact001":{
+    "speaker":["[Television]", "OPERATOR0040"],
+    "text":"/e"
+  },
+  "sc02Interact01":{
+    "speaker":["OPERATOR0040"],
+    "text":"This piece insults me./p I would do anything to sit down on this thing for real./e"
+  },
+  "sc02Interact02":{
+    "speaker":["OPERATOR0040","CIVILIAN0379","OPERATOR0040","CIVILIAN0379","OPERATOR0040"],
+    "text":""
+  },
+  "sc02Interact021":{
+    "speaker":["CIVILIAN0379","OPERATOR0040"],
+    "text":""
+  },
   "bossMonologue00":{
     "speaker":["Exelsior"],
     "text":"Attention, /pOPERATOR0040."
