@@ -121,7 +121,7 @@ class dialogueBox {
     fill(255);
     text(this.line,400,680,600,80);
 
-    if (!this.running && !this.skip) {
+    if (!this.running) {
       return;
     }
     if (this.timer > 0) {
@@ -139,6 +139,7 @@ class dialogueBox {
 
     if (next == " ") {
       this.c++;
+      this.line += next;
       return;
     }
     if (next == "/") {
@@ -351,6 +352,7 @@ function changeScene(newId) {
 
   switch (newId) {
     case 0:
+      s300();
       break;
     case 200:
       currDialogueBox = new dialogueBox(0);
@@ -450,6 +452,11 @@ function draw() {
       x+= -0.2 * deltaTime;
     }
   }
+}
+
+function s0() {
+  background(0);
+
 }
 
 function s300() {
