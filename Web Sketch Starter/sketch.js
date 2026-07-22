@@ -296,7 +296,7 @@ async function setup() {
   noSmooth();
 
   startButton = createButton("");
-  startButton.position(scale * (80 + origin.x),scale * (480 + origin.y));
+  startButton.position((scale * 80) + origin.x,(scale * 480) + origin.y);
   startButton.size(scale * 700,scale * 72);
   startButton.style("opacity", "0");
 
@@ -312,7 +312,7 @@ async function setup() {
   startButton.attribute('disabled', '');
 
   discButton = createButton("");
-  discButton.position(scale * (80 + origin.x),scale * (560 + origin.y));
+  discButton.position((scale * 80) + origin.x,(scale * 560) + origin.y);
   discButton.size(scale * 700,scale * 72);
   discButton.style("opacity", "0");
 
