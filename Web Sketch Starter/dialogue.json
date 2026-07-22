@@ -14,6 +14,62 @@
     "speaker":[],
     "text":"Initialized dialogue extension./p Press Z to continue./eWelcome-/l to Exelsior's World./eBut you may be wondering, just what kind of world is this?/eSome may call it ugly, or wrong, or cruel./p./p./l however.../eThe ruler of this world would beg to differ. They say these opinions are void, that their world is objectively perfect as is./eMany say beauty is in the eye of the beholder, but can the beholder alter the meaning of beauty?/eThat is for you to decide./p but for now./p./p./e/rYou must work./n/e/!00"
   },
+  "sc00Interact00":{
+    "speaker":["OPERATOR0040"],
+    "text":"My bed./p Not very comfortable, but it serves its purpose./e"
+  },
+  "sc00Interact01":{
+    "speaker":["OPERATOR0040"],
+    "text":"Behind the bars is a wide hallway./p How long it goes, I could never say./e"
+  },
+  "sc00Interact011":{
+    "speaker":["OPERATOR0040"],
+    "text":"I've never been outside this room before./l Well,/p at least not while I'm conscious./eApparently every now and then they take us out for health inspection and cleaning while we sleep./e"
+  },
+  "sc00Interact02":{
+    "speaker":["OPERATOR0040"],
+    "text":"Personal belongings, such as some clothes and fidgets./e"
+  },
+  "sc00Interact03":{
+    "speaker":["OPERATOR0040"],
+    "text":"Food comes from here./p Sometimes I'll also get new clothes./eI'm pretty hungry, but it seems as if they're short on food for today./e"
+  },
+  "sc00Interact031":{
+    "speaker":["OPERATOR0040"],
+    "text":"Oh well,/p I can wait./e"
+  },
+  "sc00Interact04":{
+    "speaker":["OPERATOR0040"],
+    "text":"I don't need to go right now./e"
+  },
+  "sc00Interact05":{
+    "speaker":["OPERATOR0040"],
+    "text":"I probably need to be at work soon./p./p. Time to put this thing on./l Again./e/!01"
+  },
+  "sc00Interact051":{
+    "speaker":[""],
+    "text":"Almost on command,/p the machinery begins to wake up./lAnd,/p through the headset, you begin to make out a familiar setting./e/!02"
+  },
+  "sc01Cutscene":{
+    "speaker":["OPERATOR0040"],
+    "text":"Gee, my head hurts.../eI'll try to log off early today, I suppose./l But here we are./e"
+  },
+  "sc01Interact00":{
+    "speaker":["OPERATOR0040"],
+    "text":"I could change my appearance with this box if I wanted, but there's not much point./e"
+  },
+  "sc01Interact01":{
+    "speaker":["OPERATOR0040"],
+    "text":"There's some games on this thing, I guess./eMaybe if I feel a bit better later today I'll entertain them, /pbut for now I need to get to work!"
+  },
+  "sc01Interact011":{
+    "speaker":["OPERATOR0040"],
+    "text":"Double screens make me nauseous./e"
+  },
+  "sc01Interact02":{
+    "speaker":["OPERATOR0040"],
+    "text":"Some assorted gadgets./l Not much use since work gives me all the tools I'd ever need./e"
+  },
   "bossMonologue00":{
     "speaker":["Exelsior"],
     "text":"Attention, /pOPERATOR0040."
