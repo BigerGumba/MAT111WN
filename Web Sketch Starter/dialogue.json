@@ -12,7 +12,7 @@
   },
   "introductoryCutscene":{
     "speaker":"[]",
-    "text":"Initialized dialogue extension./p Press Z to continue./eWelcome-/l to Exelsior's World./eBut you may be wondering, just what kind of world is this?/eSome may call it ugly, or wrong, or cruel.../phowever../eBeauty is in the eye of the beholder./pAlthough you are not that./eBut you may become the beholder, if you have what it takes to question the nature of reality./eBut for now,/l you must work./e/!00"
+    "text":"Initialized dialogue extension./p Press Z to continue./eWelcome-/l to Exelsior's World./eBut you may be wondering, just what kind of world is this?/eSome may call it ugly, or wrong, or cruel.../eYet the creator of this world would beg to differ that these opinions are void./eThey say beauty is in the eye of the beholder. So does the beholder have the power to alter the meaning of beauty?/eYou may soon find out./p But for now,/l you must work./e/!00"
   },
   "bossMonologue00":{
     "speaker":"[Exelsior]",

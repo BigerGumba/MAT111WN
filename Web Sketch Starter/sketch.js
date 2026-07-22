@@ -5,7 +5,7 @@ let flag = [false,
 /*
   FLAGS GUIDE
   0 = Started new game?
-  1 = Reached Scene 0?
+  1 = Reached Scene 2?
   2 = Reached Scene 3?
   3 = Reached Scene 4?
   4 = Reached Scene 5?
@@ -137,6 +137,10 @@ class dialogueBox {
       return;
     }
 
+    if (next == " ") {
+      this.c++;
+      return;
+    }
     if (next == "/") {
       this.c++;
       switch (this.lineList[this.c]) {
@@ -165,8 +169,15 @@ class dialogueBox {
           this.line += "/";
           break;
         case "!":
-          // TODO SPECIAL EVENTS
+          this.c++;
+          let eventCode = next + this.lineList(this.c);
           break;
+          
+          switch (eventCode) {
+            case "00":
+              changeScene(0);
+              break;
+          }
       }
     }
     else {
@@ -339,6 +350,8 @@ function changeScene(newId) {
   backButton.attribute('disabled', '');
 
   switch (newId) {
+    case 0:
+      break;
     case 200:
       currDialogueBox = new dialogueBox(0);
       break;
