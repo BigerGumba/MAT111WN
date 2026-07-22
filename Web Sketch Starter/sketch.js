@@ -1,3 +1,5 @@
+let scale = 1.0;
+
 let flag = [false, 
             false, false, false, false, false,
             false, false, false, false
@@ -283,7 +285,7 @@ async function setup() {
   playButton = document.getElementById("play_button");
   playButton.addEventListener("click", toggle);
 
-  const c = createCanvas(800, 800);
+  const c = createCanvas(scale * 800, scale * 800);
   c.parent('sketch');
   let origin = c.position();
 
@@ -294,8 +296,8 @@ async function setup() {
   noSmooth();
 
   startButton = createButton("");
-  startButton.position(80 + origin.x,480 + origin.y);
-  startButton.size(700,72);
+  startButton.position(scale * (80 + origin.x),scale * (480 + origin.y));
+  startButton.size(scale * 700,scale * 72);
   startButton.style("opacity", "0");
 
   startButton.mousePressed(function() {
@@ -310,8 +312,8 @@ async function setup() {
   startButton.attribute('disabled', '');
 
   discButton = createButton("");
-  discButton.position(80 + origin.x,560 + origin.y);
-  discButton.size(700,72);
+  discButton.position(scale * (80 + origin.x),scale * (560 + origin.y));
+  discButton.size(scale * 700,scale * 72);
   discButton.style("opacity", "0");
 
   discButton.mousePressed(function() {
@@ -320,8 +322,8 @@ async function setup() {
   discButton.attribute('disabled', '');
 
   backButton = createButton("");
-  backButton.position(80 + origin.x,640 + origin.y);
-  backButton.size(700,72);
+  backButton.position((scale * 80) + origin.x,(scale * 640) + origin.y);
+  backButton.size(scale * 700,scale * 72);
   backButton.style("opacity", "0");
 
   backButton.mousePressed(function() {
@@ -330,8 +332,8 @@ async function setup() {
   backButton.attribute('disabled', '');
 
   credButton = createButton("");
-  credButton.position(80 + origin.x,640 + origin.y);
-  credButton.size(700,72);
+  credButton.position((scale * 80) + origin.x,(scale * 640) + origin.y);
+  credButton.size(scale * 700, scale * 72);
   credButton.style("opacity","0");
 
   credButton.mousePressed(function() {
@@ -383,6 +385,7 @@ function changeScene(newId) {
 }
 
 function draw() {
+  resize();
   switch (s) {
     case 0:
       break;
@@ -454,6 +457,11 @@ function draw() {
   }
 }
 
+function resize() {
+  scale = min(windowWidth, windowHeight) / 1200;
+  resizeCanvas(800 * scale, 800 * scale);
+}
+
 function s0() {
   background(0);
 
@@ -461,33 +469,33 @@ function s0() {
 
 function s300() {
   background(0);
-  image(menuSS[0], 400 - menuSS[0].width, 100, menuSS[0].width*2, menuSS[0].height*2);
+  image(scale * menuSS[0], scale * (400 - menuSS[0].width), scale * 100, scale * menuSS[0].width * 2, scale * menuSS[0].height * 2);
 
   if (flag[0]) {
-    image(menuSS[2],80,480, menuSS[2].width*2, menuSS[2].height*2);
+    image(scale * menuSS[2],scale * 80,scale * 480, scale * menuSS[2].width * 2, scale * menuSS[2].height * 2);
   }
   else {
-    image(menuSS[1],80,480, menuSS[1].width*2, menuSS[1].height*2);
+    image(scale * menuSS[1],scale * 80,scale * 480, scale * menuSS[1].width * 2, scale * menuSS[1].height * 2);
   }
 
-  image(menuSS[4],80,560, menuSS[4].width*2, menuSS[4].height*2);
-  image(menuSS[6],80,640, menuSS[6].width*2, menuSS[6].height*2);
+  image(scale * menuSS[4],0,scale * 560, scale * menuSS[4].width*2, scale * menuSS[4].height*2);
+  image(scale * menuSS[6],scale * 80,scale * 640, scale * menuSS[6].width*2, scale * menuSS[6].height*2);
 }
 
 function s301() {
   background(0);
-  image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
+  image(scale * menuSS[3],scale * 80,scale * 640, scale * menuSS[3].width * 2, scale * menuSS[3].height * 2);
 }
 
 function s302() {
   background(0);
-  image(menuSS[5],0,-100,800,800);
-  image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
+  image(scale * menuSS[5],0,scale * -100,scale * 800,scale * 800);
+  image(scale * menuSS[3],scale * 80,scale * 640, scale * menuSS[3].width * 2, scale * menuSS[3].height * 2);
 }
 
 function s303() {
   background(0);
-  image(menuSS[3],80,640, menuSS[3].width*2, menuSS[3].height*2);
+  image(scale * menuSS[3],scale * 80,scale * 640, scale * menuSS[3].width * 2, scale * menuSS[3].height * 2);
 }
 
 function changeState(newState) {
