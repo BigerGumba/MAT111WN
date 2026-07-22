@@ -1,4 +1,5 @@
 let scale = 1.0;
+let c;
 let origin;
 
 let flag = [false, 
@@ -286,7 +287,7 @@ async function setup() {
   playButton = document.getElementById("play_button");
   playButton.addEventListener("click", toggle);
 
-  const c = createCanvas(scale * 800, scale * 800);
+  c = createCanvas(scale * 800, scale * 800);
   c.parent('sketch');
   origin = c.position();
 
