@@ -481,7 +481,7 @@ function s300() {
     image(menuSS[1],scale * 80,scale * 480, scale * menuSS[1].width * 2, scale * menuSS[1].height * 2);
   }
 
-  image(menuSS[4],0,scale * 560, scale * menuSS[4].width*2, scale * menuSS[4].height*2);
+  image(menuSS[4],scale * 80,scale * 560, scale * menuSS[4].width*2, scale * menuSS[4].height*2);
   image(menuSS[6],scale * 80,scale * 640, scale * menuSS[6].width*2, scale * menuSS[6].height*2);
 }
 
