@@ -91,49 +91,49 @@ class dialogueBox {
     stroke(255); 
     fill(0); 
     if (this.speakerList.length > 0) {
-      circle(60,560,40); 
-      circle(240,560,40); 
+      circle(scale * 60,scale * 560,scale * 40); 
+      circle(scale * 240,scale * 560,scale * 40); 
 
       noStroke(); 
-      rect(150,580,180,80); 
-      rect(150,600,220,80);
+      rect(scale * 150,scale * 580,scale * 180,scale * 80); 
+      rect(scale * 150,scale * 600,scale * 220,scale * 80);
 
       stroke(255); 
-      line(60,540,240,540); 
-      line(260,560,260,600); 
-      line(40,560,40,640);
+      line(scale * 60,scale * 540,scale * 240,scale * 540); 
+      line(scale * 260,scale * 560,scale * 260,scale * 600); 
+      line(scale * 40,scale * 560,scale * 40,scale * 640);
 
-      text(this.speakerList[this.s],150,580);
+      text(this.speakerList[this.s],scale * 150,scale * 580);
     }
     
-    circle(80, 640, 80); 
-    circle(80, 720, 80); 
-    circle(720, 640, 80); 
-    circle(720, 720, 80); 
+    circle(scale * 80, scale * 640, scale * 80); 
+    circle(scale * 80, scale * 720, scale * 80); 
+    circle(scale * 720, scale * 640, scale * 80); 
+    circle(scale * 720, scale * 720, scale * 80); 
     
     noStroke(); 
-    rect(400,680,640,160); 
-    rect(400,680,720,80); 
+    rect(scale * 400,scale * 680,scale * 640,scale * 160); 
+    rect(scale * 400,scale * 680,scale * 20,scale * 80); 
     
     stroke(255); 
-    line(40,640,40,720); 
-    line(80,600,720,600); 
-    line(720,760,80,760); 
-    line(760,640,760,720);
+    line(scale * 40,scale * 640,scale * 40,scale * 720); 
+    line(scale * 80,scale * 600,scale * 720,scale * 600); 
+    line(scale * 720,scale * 760,scale * 80,scale * 760); 
+    line(scale * 760,scale * 640,scale * 760,scale * 720);
 
     fill(255);
-    text(this.line,400,680,600,80);
+    text(this.line,scale * 400,scale * 680,scale * 600,scale * 80);
 
     if (!this.running) {
       return;
     }
     let next = this.lineList[this.c];
 
-    if (skip) {
+    if (this.skip) {
       if (next == "/") {
         this.c++;
         if (this.lineList[this.c] == "e") {
-          skip = false;
+          this.skip = false;
           this.running = false;
         }
       }
@@ -172,7 +172,7 @@ class dialogueBox {
           this.timer = 500;
           break;
         case "r":
-          skip = true;
+          this.skip = true;
           break;
         case "s":
           this.s++;
@@ -187,10 +187,10 @@ class dialogueBox {
           this.line += "/";
           break;
         case "!":
+          this.c++;
           let eventCode =
             this.lineList[this.c] +
             this.lineList[this.c + 1];
-          this.c++;
           
           switch (eventCode) {
             case "00":
@@ -260,10 +260,6 @@ class betterButton {
     this.sy = this.bsy * scale;
     this.lx = this.blx * scale;
     this.ly = this.bly * scale;
-  }
-  debug() {
-    fill(255,255,255,180);
-    rect(this.strx, this.stry, this.lenx, this.leny);
   }
 }
 
@@ -364,7 +360,6 @@ function changeScene(newId) {
 
   switch (newId) {
     case 0:
-      s300();
       break;
     case 200:
       currDialogueBox = new dialogueBox(0);
@@ -390,11 +385,16 @@ function changeScene(newId) {
 
 function draw() {
   resize();
-  for (let button of buttons) {
-    button.resize();
+
+  if (buttons.length > 0) {
+    for (let button of buttons) {
+      button.resize();
+    }
   }
+
   switch (s) {
     case 0:
+      s0();
       break;
     case 1:
       break;
@@ -442,10 +442,6 @@ function draw() {
     case 999:
       background(0);
       return;
-  }
-
-  for (let button of buttons) {
-    button.debug();
   }
 
   if (currDialogueBox) {
