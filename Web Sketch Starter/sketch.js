@@ -89,14 +89,15 @@ class dialogueBox {
   }
   display(delta) {
     stroke(255); 
-    fill(0); 
+    fill(0);
+    textSize(32 * scale);
     if (this.speakerList.length > 0) {
       circle(scale * 60,scale * 560,scale * 40); 
       circle(scale * 240,scale * 560,scale * 40); 
 
       noStroke(); 
-      rect(scale * 150,scale * 580,scale * 180,scale * 80); 
-      rect(scale * 150,scale * 600,scale * 220,scale * 80);
+      rect(scale * 60,scale * 540,scale * 180,scale * 80); 
+      rect(scale * 40,scale * 560,scale * 220,scale * 80);
 
       stroke(255); 
       line(scale * 60,scale * 540,scale * 240,scale * 540); 
@@ -112,8 +113,8 @@ class dialogueBox {
     circle(scale * 720, scale * 720, scale * 80); 
     
     noStroke(); 
-    rect(scale * 400,scale * 680,scale * 640,scale * 160); 
-    rect(scale * 400,scale * 680,scale * 20,scale * 80); 
+    rect(scale * 80,scale * 600,scale * 640,scale * 160); 
+    rect(scale * 40,scale * 640,scale * 720,scale * 80); 
     
     stroke(255); 
     line(scale * 40,scale * 640,scale * 40,scale * 720); 
@@ -122,27 +123,12 @@ class dialogueBox {
     line(scale * 760,scale * 640,scale * 760,scale * 720);
 
     fill(255);
-    text(this.line,scale * 400,scale * 680,scale * 600,scale * 80);
+    text(this.line,scale * 100,scale * 640,scale * 600,scale * 80);
 
     if (!this.running) {
       return;
     }
     let next = this.lineList[this.c];
-
-    if (this.skip) {
-      if (next == "/") {
-        this.c++;
-        if (this.lineList[this.c] == "e") {
-          this.skip = false;
-          this.running = false;
-        }
-      }
-      else {
-        this.line += next;
-        this.c++;
-      }
-      return;
-    }
 
     if (this.timer > 0) {
       this.timer -= delta;
@@ -171,9 +157,6 @@ class dialogueBox {
         case "l":
           this.timer = 500;
           break;
-        case "r":
-          this.skip = true;
-          break;
         case "s":
           this.s++;
           break;
@@ -197,6 +180,7 @@ class dialogueBox {
               changeScene(0);
               break;
           }
+          this.c++;
           break;
       }
     }
@@ -206,10 +190,7 @@ class dialogueBox {
     this.c++;
   }
   advance() {
-    if(this.running) {
-      this.skip = true;
-    }
-    else {
+    if(!this.running) {
       this.line = "";
       this.running = true;
       this.skip = false;
@@ -348,9 +329,7 @@ async function setup() {
   c.parent('sketch');
   origin = c.position();
 
-  rectMode(CENTER);
   textAlign(CENTER,CENTER);
-  textSize(32);
 
   noSmooth();
 }

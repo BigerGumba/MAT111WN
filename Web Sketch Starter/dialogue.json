@@ -12,7 +12,7 @@
   },
   "introductoryCutscene":{
     "speaker":[],
-    "text":"Initialized dialogue extension./p Press Z to continue./eWelcome-/l to Exelsior's World./eBut you may be wondering, just what kind of world is this?/eSome may call it ugly, or wrong, or cruel./p./p./l however.../eThe ruler of this world would beg to differ. They say these opinions are void, that their world is objectively perfect as is./eMany say beauty is in the eye of the beholder, but can the beholder alter the meaning of beauty?/eThat is for you to decide./p but for now./p./p./e/rYou must work./n/e/!00"
+    "text":"Initialized dialogue extension./p Press Z to continue./eWelcome-/l to Exelsior's World./eBut you may be wondering, just what kind of world is this?/eSome may call it ugly, or wrong, or cruel./p./p./l however.../eThe ruler of this world would beg to differ. They say these opinions are void, that their world is objectively perfect as is./eMany say beauty is in the eye of the beholder, but can the beholder alter the meaning of beauty?/eThat is for you to decide,/p in due time./l For now./p./p./eYou must work./e/!00"
   },
   "sc00Interact00":{
     "speaker":["OPERATOR0040"],
