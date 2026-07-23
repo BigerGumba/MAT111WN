@@ -1,6 +1,5 @@
 let scale = 1.0;
 let c;
-let origin;
 
 let flag = [false, 
             false, false, false, false, false,
@@ -128,11 +127,28 @@ class dialogueBox {
     if (!this.running) {
       return;
     }
+    let next = this.lineList[this.c];
+
+    if (skip) {
+      if (next == "/") {
+        this.c++;
+        if (this.lineList[this.c] == "e") {
+          skip = false;
+          this.running = false;
+        }
+      }
+      else {
+        this.line += next;
+        this.c++;
+      }
+      return;
+    }
+
     if (this.timer > 0) {
       this.timer -= delta;
       return;
     }
-    let next = this.lineList[this.c];
+
     this.timer = this.defaultTime;
 
     if (next == undefined) {
@@ -156,10 +172,7 @@ class dialogueBox {
           this.timer = 500;
           break;
         case "r":
-          this.defaultTime = -1;
-          break;
-        case "n":
-          this.defaultTime = 20;
+          skip = true;
           break;
         case "s":
           this.s++;
@@ -174,15 +187,17 @@ class dialogueBox {
           this.line += "/";
           break;
         case "!":
+          let eventCode =
+            this.lineList[this.c] +
+            this.lineList[this.c + 1];
           this.c++;
-          let eventCode = next + this.lineList(this.c);
-          break;
           
           switch (eventCode) {
             case "00":
               changeScene(0);
               break;
           }
+          break;
       }
     }
     else {
@@ -199,6 +214,56 @@ class dialogueBox {
       this.running = true;
       this.skip = false;
     }
+  }
+}
+
+let buttons = [];
+
+class betterButton {
+  constructor(id, bsx, bsy, blx, bly) {
+    this.id = id;
+    this.bsx = bsx;
+    this.bsy = bsy;
+    this.blx = blx;
+    this.bly = bly;
+    this.sx = bsx;
+    this.sy = bsy;
+    this.lx = blx;
+    this.ly = bly;
+  }
+  onClick(mouseX, mouseY) {
+    if ((mouseX > this.sx) && (mouseX < (this.sx + this.lx)) && (mouseY > this.sy) && (mouseY < (this.sy + this.ly))) {
+      switch (this.id) {
+        case 0:
+          if (flag[0]) {
+            changeScene(301);
+          }
+          else {
+            flag[0] = true;
+            changeScene(200);
+          }
+          break;
+        case 1:
+          changeScene(302);
+          break;
+        case 2:
+          changeScene(303);
+          break;
+        case 3:
+          changeScene(300);
+          break;
+      }
+    }
+  }
+  resize() {
+    this.sx = this.bsx * scale;
+    this.sy = this.bsy * scale;
+    this.lx = this.blx * scale;
+    this.ly = this.bly * scale;
+  }
+  debug() {
+    fill(255,255,255,180);
+    rect(this.strx, this.stry, this.lenx, this.leny);
   }
 }
 
@@ -253,10 +318,6 @@ function preload() {
   menuSS.push(loadImage("./assets/menu/menu_sslocked.png"));
 }
 
-let startButton;
-let discButton;
-let backButton;
-let credButton;
 let playButton;
 
 function toggle() {
@@ -296,63 +357,10 @@ async function setup() {
   textSize(32);
 
   noSmooth();
-
-  startButton = createButton("");
-  startButton.position((scale * 80) + origin.x,(scale * 480) + origin.y);
-  startButton.size(scale * 700,scale * 72);
-  startButton.style("opacity", "100");
-
-  startButton.mousePressed(function() {
-    if (flag[0]) {
-      changeScene(301);
-    }
-    else {
-      flag[0] = true;
-      changeScene(200);
-    }
-  });
-  startButton.attribute('disabled', '');
-
-  discButton = createButton("");
-  discButton.position((scale * 80) + origin.x,(scale * 560) + origin.y);
-  discButton.size(scale * 700,scale * 72);
-  discButton.style("opacity", "100");
-
-  discButton.mousePressed(function() {
-    changeScene(302);
-  });
-  discButton.attribute('disabled', '');
-
-  backButton = createButton("");
-  backButton.position((scale * 80) + origin.x,(scale * 640) + origin.y);
-  backButton.size(scale * 700,scale * 72);
-  backButton.style("opacity", "100");
-
-  backButton.mousePressed(function() {
-   changeScene(300);
-  });
-  backButton.attribute('disabled', '');
-
-  credButton = createButton("");
-  credButton.position((scale * 80) + origin.x,(scale * 640) + origin.y);
-  credButton.size(scale * 700, scale * 72);
-  credButton.style("opacity","100");
-
-  credButton.mousePressed(function() {
-    changeScene(303);
-  });
-  credButton.attribute('disabled', '');
 }
 
 function changeScene(newId) {
-  startButton.style("z-index", "-50");
-  discButton.style("z-index", "-50");
-  credButton.style("z-index", "-50");
-  backButton.style("z-index", "-50");
-  startButton.attribute('disabled', '');
-  discButton.attribute('disabled', '');
-  credButton.attribute('disabled', '');
-  backButton.attribute('disabled', '');
+  buttons = [];
 
   switch (newId) {
     case 0:
@@ -362,24 +370,18 @@ function changeScene(newId) {
       currDialogueBox = new dialogueBox(0);
       break;
     case 300:
-      startButton.style("z-index", "1");
-      discButton.style("z-index", "1");
-      credButton.style("z-index", "1");
-      startButton.removeAttribute('disabled');
-      discButton.removeAttribute('disabled');
-      credButton.removeAttribute('disabled');
+      buttons.push(new betterButton(0, 80, 480, 700, 72));
+      buttons.push(new betterButton(1, 80, 560, 700, 72));
+      buttons.push(new betterButton(2, 80, 640, 700, 72));
       break;
     case 301:
-      backButton.style("z-index", "1");
-      backButton.removeAttribute('disabled');
+      buttons.push(new betterButton(3, 80, 640, 700, 72));
       break;
     case 302:
-      backButton.style("z-index", "1");
-      backButton.removeAttribute('disabled');
+      buttons.push(new betterButton(3, 80, 640, 700, 72));
       break;
     case 303:
-      backButton.style("z-index", "1");
-      backButton.removeAttribute('disabled');
+      buttons.push(new betterButton(3, 80, 640, 700, 72));
       break;
   }
 
@@ -388,6 +390,9 @@ function changeScene(newId) {
 
 function draw() {
   resize();
+  for (let button of buttons) {
+    button.resize();
+  }
   switch (s) {
     case 0:
       break;
@@ -437,6 +442,10 @@ function draw() {
     case 999:
       background(0);
       return;
+  }
+
+  for (let button of buttons) {
+    button.debug();
   }
 
   if (currDialogueBox) {
@@ -527,6 +536,12 @@ function keyPressed() {
   }
   if ((keyCode === ESCAPE) && ((state == "I") || (state == "D"))) {
     changeState("P");
+  }
+}
+
+function mousePressed() {
+  for (let button of buttons) {
+    button.onClick(mouseX, mouseY);
   }
 }
 
