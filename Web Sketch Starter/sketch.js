@@ -263,36 +263,47 @@ class screenOverlay {
 let currPlayer;
 
 class player {
-  constructor(isReal,sx,sy,dir) {
+  constructor(isReal,dir) {
     this.isReal = isReal;
-    this.sx = sx;
-    this.sy = sy;
     this.dir = dir;
     this.s = 0;
     this.t = 0;
   }
-  display() {
+  display(isMoving, delta) {
+    if (isMoving) {
+      this.t += delta;
+      if (this.t > 200) {
+        this.t = 0;
+        this.s++;
+        if (this.s > 2) {
+          this.s = 0;
+        }
+      }
+    }
+    else {
+      this.t = 200;
+    }
     switch (this.dir) {
       // FACING LEFT
       case 0:
-        switch (this.k) {
+        switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,0,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,0,0,16,32);
             }
             else {
 
             }
           case 1:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,16,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,16,0,16,32);
             }
             else {
 
             }
           case 2:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,32,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,32,0,16,32);
             }
             else {
 
@@ -304,7 +315,7 @@ class player {
         switch (this.k) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,48,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,48,0,16,32);
             }
             else {
 
@@ -312,7 +323,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,64,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64,0,16,32);
             }
             else {
 
@@ -320,7 +331,7 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,80,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,80,0,16,32);
             }
             else {
 
@@ -333,7 +344,7 @@ class player {
         switch (this.k) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,144,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,144,0,16,32);
             }
             else {
 
@@ -341,7 +352,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,160,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,160,0,16,32);
             }
             else {
 
@@ -349,7 +360,7 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,176,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,176,0,16,32);
             }
             else {
 
@@ -362,7 +373,7 @@ class player {
         switch (this.k) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,96,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,96,0,16,32);
             }
             else {
 
@@ -370,7 +381,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,112,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,112,0,16,32);
             }
             else {
 
@@ -378,7 +389,7 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,this.sx,this.sy,128,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,128,0,16,32);
             }
             else {
 
