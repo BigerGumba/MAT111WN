@@ -478,9 +478,11 @@ async function setup() {
 
 function changeScene(newId) {
   buttons = [];
+  currPlayer = null;
 
   switch (newId) {
     case 0:
+      currPlayer = new player(true, 3);
       break;
     case 200:
       currDialogueBox = new dialogueBox(0);
@@ -569,19 +571,27 @@ function draw() {
     currDialogueBox.display(deltaTime);
   }
 
-  if (state == "I") {
-    if (keyIsDown(UP_ARROW)){
-      y+= -0.2 * deltaTime;
+    if (currPlayer) {
+    let isMoving = false;
+    if (state == "I") {
+      if (keyIsDown(UP_ARROW)){
+        y+= -0.2 * deltaTime;
+        isMoving = true;
+      }
+      if (keyIsDown(DOWN_ARROW)) {
+        y+= 0.2 * deltaTime;
+        isMoving = true;
+      }
+      if (keyIsDown(RIGHT_ARROW)) {
+        x+= 0.2 * deltaTime;
+        isMoving = true;
+      }
+      if (keyIsDown(LEFT_ARROW)) {
+        x+= -0.2 * deltaTime;
+        isMoving = true;
+      }
     }
-    if (keyIsDown(DOWN_ARROW)) {
-      y+= 0.2 * deltaTime;
-    }
-    if (keyIsDown(RIGHT_ARROW)) {
-      x+= 0.2 * deltaTime;
-    }
-    if (keyIsDown(LEFT_ARROW)) {
-      x+= -0.2 * deltaTime;
-    }
+    currPlayer.display(isMoving, deltaTime);
   }
 }
 
