@@ -664,6 +664,48 @@ function s300() {
 
 function s301() {
   background(0);
+  if (flag[0]) {
+    image(menuSS[8],scale * 80,scale * 80, scale * menuSS[8].width * 2, scale * menuSS[8].height * 2);
+  }
+  else {
+    image(menuSS[15],scale * 80,scale * 80, scale * menuSS[15].width * 2, scale * menuSS[15].height * 2);
+  }
+  if (flag[1]) {
+    image(menuSS[9],scale * 80,scale * 160, scale * menuSS[9].width * 2, scale * menuSS[9].height * 2);
+  }
+  else {
+    image(menuSS[15],scale * 80,scale * 160, scale * menuSS[15].width * 2, scale * menuSS[15].height * 2);
+  }
+  if (flag[2]) {
+    image(menuSS[10],scale * 80,scale * 240, scale * menuSS[10].width * 2, scale * menuSS[10].height * 2);
+  }
+  else {
+    image(menuSS[15],scale * 80,scale * 240, scale * menuSS[15].width * 2, scale * menuSS[15].height * 2);
+  }
+  if (flag[3]) {
+    image(menuSS[11],scale * 80,scale * 320, scale * menuSS[11].width * 2, scale * menuSS[11].height * 2);
+  }
+  else {
+    image(menuSS[15],scale * 80,scale * 320, scale * menuSS[15].width * 2, scale * menuSS[15].height * 2);
+  }
+  if (flag[4]) {
+    image(menuSS[12],scale * 80,scale * 400, scale * menuSS[12].width * 2, scale * menuSS[12].height * 2);
+  }
+  else {
+    image(menuSS[15],scale * 80,scale * 400, scale * menuSS[15].width * 2, scale * menuSS[15].height * 2);
+  }
+  if (flag[5]) {
+    image(menuSS[13],scale * 80,scale * 480, scale * menuSS[13].width * 2, scale * menuSS[13].height * 2);
+  }
+  else {
+    image(menuSS[15],scale * 80,scale * 480, scale * menuSS[15].width * 2, scale * menuSS[15].height * 2);
+  }
+  if (flag[6]) {
+    image(menuSS[14],scale * 80,scale * 560, scale * menuSS[14].width * 2, scale * menuSS[14].height * 2);
+  }
+  else {
+    image(menuSS[15],scale * 80,scale * 560, scale * menuSS[15].width * 2, scale * menuSS[15].height * 2);
+  }
   image(menuSS[3],scale * 80,scale * 640, scale * menuSS[3].width * 2, scale * menuSS[3].height * 2);
 }
 
