@@ -1,7 +1,7 @@
 let scale = 1.0;
 let c;
 
-let flag = [false, 
+let flag = [true, 
             false, false, false, false, false,
             false, false, false, false
 ];
@@ -232,6 +232,41 @@ class betterButton {
           break;
         case 3:
           changeScene(300);
+          break;
+        case 10:
+          if (flag[0]) {
+            changeScene(0);
+          }
+          break;
+        case 11:
+          if (flag[1]) {
+            changeScene(20);
+          }
+          break;
+        case 12:
+          if (flag[2]) {
+            changeScene(30);
+          }
+          break;
+        case 13:
+          if (flag[3]) {
+            changeScene(40);
+          }
+          break;
+        case 14:
+          if (flag[4]) {
+            hangeScene(50);
+          }
+          break;
+        case 15:
+          if (flag[5]) {
+            changeScene(60);
+          }
+          break;
+        case 16:
+          if (flag[6]) {
+            changeScene(63);
+          }
           break;
       }
     }
@@ -493,7 +528,13 @@ function changeScene(newId) {
       buttons.push(new betterButton(2, 80, 640, 700, 72));
       break;
     case 301:
-      buttons.push(new betterButton(3, 80, 640, 700, 72));
+      buttons.push(new betterButton(10, 80, 80, 700, 72));
+      buttons.push(new betterButton(11, 80, 160, 700, 72));
+      buttons.push(new betterButton(12, 80, 240, 700, 72));
+      buttons.push(new betterButton(13, 80, 320, 700, 72));
+      buttons.push(new betterButton(14, 80, 400, 700, 72));
+      buttons.push(new betterButton(15, 80, 480, 700, 72));
+      buttons.push(new betterButton(16, 80, 560, 700, 72));
       break;
     case 302:
       buttons.push(new betterButton(3, 80, 640, 700, 72));
