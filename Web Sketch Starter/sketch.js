@@ -260,9 +260,139 @@ class screenOverlay {
   }
 }
 
+let currPlayer;
+
+class player {
+  constructor(isReal,sx,sy,dir) {
+    this.isReal = isReal;
+    this.sx = sx;
+    this.sy = sy;
+    this.dir = dir;
+    this.s = 0;
+    this.t = 0;
+  }
+  display() {
+    switch (this.dir) {
+      // FACING LEFT
+      case 0:
+        switch (this.k) {
+          case 0:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,0,0,16,32);
+            }
+            else {
+
+            }
+          case 1:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,16,0,16,32);
+            }
+            else {
+
+            }
+          case 2:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,32,0,16,32);
+            }
+            else {
+
+            }
+        }
+        break;
+      // FACING RIGHT
+      case 1:
+        switch (this.k) {
+          case 0:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,48,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 1:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,64,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 2:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,80,0,16,32);
+            }
+            else {
+
+            }
+            break;
+        }
+        break;
+      // FACING UP
+      case 2:
+        switch (this.k) {
+          case 0:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,144,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 1:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,160,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 2:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,176,0,16,32);
+            }
+            else {
+
+            }
+            break;
+        }
+        break;
+      // FACING DOWN
+      case 3:
+        switch (this.k) {
+          case 0:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,96,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 1:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,112,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 2:
+            if (this.isReal) {
+              image(charSSReal,this.sx,this.sy,128,0,16,32);
+            }
+            else {
+
+            }
+            break;
+        }
+        break;
+    }
+  }
+}
+
 let menuSS = [];
 
-let charSSReal = [];
+let charSSReal;
 
 let charSSVirt = [];
 
@@ -293,6 +423,7 @@ function preload() {
   menuSS.push(loadImage("./assets/menu/menu_ss6.png"));
   menuSS.push(loadImage("./assets/menu/menu_ss7.png"));
   menuSS.push(loadImage("./assets/menu/menu_sslocked.png"));
+  charSSReal = loadImage("./assets/protagss/protagspritesheet.png");
 }
 
 let playButton;
