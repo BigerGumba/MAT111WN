@@ -473,6 +473,22 @@ class player {
   }
 }
 
+class interactBox {
+  constructor(id, sx, sy, lx, ly) {
+    this.id = id;
+    this.sx = sx;
+    this.sy = sy;
+    this.lx = lx;
+    this.ly = ly;
+  }
+  onInteract() {
+    switch (this.id) {
+      case 0:
+        break;
+    }
+  }
+}
+
 let menuSS = [];
 
 let charSSReal;
@@ -506,7 +522,17 @@ function preload() {
   menuSS.push(loadImage("./assets/menu/menu_ss6.png"));
   menuSS.push(loadImage("./assets/menu/menu_ss7.png"));
   menuSS.push(loadImage("./assets/menu/menu_sslocked.png"));
+
   charSSReal = loadImage("./assets/protagss/protagspritesheet.png");
+
+  enviroSSReal.push(loadImage("./assets/scenes/rwbedroomunder.png"));
+  enviroSSReal.push(loadImage("./assets/scenes/rwbedroomover.png"));
+  enviroSSReal.push(loadImage("./assets/scenes/rwopenroomunder.png"));
+  enviroSSReal.push(loadImage("./assets/scenes/rwopenroomover.png"));
+  enviroSSReal.push(loadImage("./assets/scenes/rwhallway.png"));
+  enviroSSReal.push(loadImage("./assets/scenes/rwelevator.png"));
+  enviroSSReal.push(loadImage("./assets/scenes/rwarenaunder.png"));
+  enviroSSReal.push(loadImage("./assets/scenes/rwarenaover.png"));
 }
 
 let playButton;
@@ -595,7 +621,7 @@ function draw() {
 
   switch (s) {
     case 0:
-      s0();
+      s0(deltaTime);
       break;
     case 1:
       break;
@@ -648,32 +674,34 @@ function draw() {
   if (currDialogueBox) {
     currDialogueBox.display(deltaTime);
   }
+}
 
-    if (currPlayer) {
-      let isMoving = false;
-      if (state == "I") {
-        if (keyIsDown(UP_ARROW)){
-          currPlayer.dir = 2;
-          y+= -0.2 * deltaTime;
-          isMoving = true;
-        }
-        if (keyIsDown(DOWN_ARROW)) {
-          currPlayer.dir = 3;
-          y+= 0.2 * deltaTime;
-          isMoving = true;
-        }
-        if (keyIsDown(RIGHT_ARROW)) {
-          currPlayer.dir = 1;
-          x+= 0.2 * deltaTime;
-          isMoving = true;
-        }
-        if (keyIsDown(LEFT_ARROW)) {
-          currPlayer.dir = 0;
-          x+= -0.2 * deltaTime;
-          isMoving = true;
-        }
+function drawPlayer(delta) {
+  if (currPlayer) {
+    let isMoving = false;
+    if (state == "I") {
+      if (keyIsDown(UP_ARROW)){
+        currPlayer.dir = 2;
+        y+= -0.2 * delta;
+        isMoving = true;
       }
-      currPlayer.display(isMoving, deltaTime);
+      if (keyIsDown(DOWN_ARROW)) {
+        currPlayer.dir = 3;
+        y+= 0.2 * delta;
+        isMoving = true;
+      }
+      if (keyIsDown(RIGHT_ARROW)) {
+        currPlayer.dir = 1;
+        x+= 0.2 * delta;
+        isMoving = true;
+      }
+      if (keyIsDown(LEFT_ARROW)) {
+        currPlayer.dir = 0;
+        x+= -0.2 * delta;
+        isMoving = true;
+      }
+    }
+    currPlayer.display(isMoving, delta);
   }
 }
 
@@ -682,8 +710,11 @@ function resize() {
   resizeCanvas(800 * scale, 800 * scale);
 }
 
-function s0() {
+function s0(delta) {
   background(0);
+  image(enviroSSReal[0],scale * (400 - x), scale * (400 - y), enviroSSReal[0].width * scale * 2, enviroSSReal[0].height * scale * 2);
+  drawPlayer(delta);
+  image(enviroSSReal[1],scale * (400 - x), scale * (400 - y), enviroSSReal[1].width * scale * 2, enviroSSReal[1].height * scale * 2);
 }
 
 function s300() {
