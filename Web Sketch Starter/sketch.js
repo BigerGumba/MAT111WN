@@ -318,6 +318,7 @@ class player {
     }
     else {
       this.t = 200;
+      this.s = 0;
     }
     switch (this.dir) {
       // FACING LEFT
