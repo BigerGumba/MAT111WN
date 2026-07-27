@@ -76,7 +76,6 @@ class dialogueBox {
     this.defaultTime = 20;
     this.line = "";
     this.running = true;
-    this.skip = false;
     let block;
 
     switch (this.tID) {
@@ -193,7 +192,6 @@ class dialogueBox {
     if(!this.running) {
       this.line = "";
       this.running = true;
-      this.skip = false;
     }
   }
 }
@@ -255,7 +253,7 @@ class betterButton {
           break;
         case 14:
           if (flag[4]) {
-            hangeScene(50);
+            changeScene(50);
           }
           break;
         case 15:
@@ -310,7 +308,7 @@ class player {
       if (this.t > 200) {
         this.t = 0;
         this.s++;
-        if (this.s > 2) {
+        if (this.s > 3) {
           this.s = 0;
         }
       }
@@ -324,33 +322,44 @@ class player {
         switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,0,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,0,0,16,32);
             }
             else {
 
             }
+            break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,16,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,16,0,16,32);
             }
             else {
 
             }
+            break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,32,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,0,0,16,32);
             }
             else {
 
             }
+            break;
+          case 3:
+            if (this.isReal) {
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,32,0,16,32);
+            }
+            else {
+
+            }
+            break;
         }
         break;
       // FACING RIGHT
       case 1:
-        switch (this.k) {
+        switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,48,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,48,0,16,32);
             }
             else {
 
@@ -358,7 +367,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,64,0,16,32);
             }
             else {
 
@@ -366,7 +375,15 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,80,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,48,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 3:
+            if (this.isReal) {
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,80,0,16,32);
             }
             else {
 
@@ -376,10 +393,10 @@ class player {
         break;
       // FACING UP
       case 2:
-        switch (this.k) {
+        switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,144,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,144,0,16,32);
             }
             else {
 
@@ -387,7 +404,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,160,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,160,0,16,32);
             }
             else {
 
@@ -395,7 +412,15 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,176,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,144,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 3:
+            if (this.isReal) {
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,176,0,16,32);
             }
             else {
 
@@ -405,10 +430,10 @@ class player {
         break;
       // FACING DOWN
       case 3:
-        switch (this.k) {
+        switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,96,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,96,0,16,32);
             }
             else {
 
@@ -416,7 +441,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,112,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,112,0,16,32);
             }
             else {
 
@@ -424,7 +449,15 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,128,0,16,32);
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,96,0,16,32);
+            }
+            else {
+
+            }
+            break;
+          case 3:
+            if (this.isReal) {
+              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,128,0,16,32);
             }
             else {
 
@@ -504,7 +537,6 @@ async function setup() {
 
   c = createCanvas(scale * 800, scale * 800);
   c.parent('sketch');
-  origin = c.position();
 
   textAlign(CENTER,CENTER);
 
@@ -518,6 +550,7 @@ function changeScene(newId) {
   switch (newId) {
     case 0:
       currPlayer = new player(true, 3);
+      changeState("I");
       break;
     case 200:
       currDialogueBox = new dialogueBox(0);
@@ -613,38 +646,40 @@ function draw() {
   }
 
     if (currPlayer) {
-    let isMoving = false;
-    if (state == "I") {
-      if (keyIsDown(UP_ARROW)){
-        y+= -0.2 * deltaTime;
-        isMoving = true;
+      let isMoving = false;
+      if (state == "I") {
+        if (keyIsDown(UP_ARROW)){
+          currPlayer.dir = 2;
+          y+= -0.2 * deltaTime;
+          isMoving = true;
+        }
+        if (keyIsDown(DOWN_ARROW)) {
+          currPlayer.dir = 3;
+          y+= 0.2 * deltaTime;
+          isMoving = true;
+        }
+        if (keyIsDown(RIGHT_ARROW)) {
+          currPlayer.dir = 1;
+          x+= 0.2 * deltaTime;
+          isMoving = true;
+        }
+        if (keyIsDown(LEFT_ARROW)) {
+          currPlayer.dir = 0;
+          x+= -0.2 * deltaTime;
+          isMoving = true;
+        }
       }
-      if (keyIsDown(DOWN_ARROW)) {
-        y+= 0.2 * deltaTime;
-        isMoving = true;
-      }
-      if (keyIsDown(RIGHT_ARROW)) {
-        x+= 0.2 * deltaTime;
-        isMoving = true;
-      }
-      if (keyIsDown(LEFT_ARROW)) {
-        x+= -0.2 * deltaTime;
-        isMoving = true;
-      }
-    }
-    currPlayer.display(isMoving, deltaTime);
+      currPlayer.display(isMoving, deltaTime);
   }
 }
 
 function resize() {
   scale = min(windowWidth, windowHeight) / 1200;
   resizeCanvas(800 * scale, 800 * scale);
-  origin = c.position();
 }
 
 function s0() {
   background(0);
-
 }
 
 function s300() {
