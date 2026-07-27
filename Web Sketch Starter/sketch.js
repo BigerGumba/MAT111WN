@@ -18,7 +18,10 @@ let flag = [true,
   8 = Paused?
   9 = In Save Animation?
 */
-let defaultFlags = [false];
+let defaultFlags = [false,
+                    false, false, false, false, false,
+                    false, false, false, false
+];
 
 let state = "T";
 /*
@@ -322,7 +325,7 @@ class player {
         switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,0,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,0,0,16,32);
             }
             else {
 
@@ -330,7 +333,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,16,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,16,0,16,32);
             }
             else {
 
@@ -338,7 +341,7 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,0,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,0,0,16,32);
             }
             else {
 
@@ -346,7 +349,7 @@ class player {
             break;
           case 3:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,32,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,32,0,16,32);
             }
             else {
 
@@ -359,7 +362,7 @@ class player {
         switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,48,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,48,0,16,32);
             }
             else {
 
@@ -367,7 +370,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,64,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,64,0,16,32);
             }
             else {
 
@@ -375,7 +378,7 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,48,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,48,0,16,32);
             }
             else {
 
@@ -383,7 +386,7 @@ class player {
             break;
           case 3:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,80,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,80,0,16,32);
             }
             else {
 
@@ -396,7 +399,7 @@ class player {
         switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,144,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,144,0,16,32);
             }
             else {
 
@@ -404,7 +407,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,160,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,160,0,16,32);
             }
             else {
 
@@ -412,7 +415,7 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,144,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,144,0,16,32);
             }
             else {
 
@@ -420,7 +423,7 @@ class player {
             break;
           case 3:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,176,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,176,0,16,32);
             }
             else {
 
@@ -433,7 +436,7 @@ class player {
         switch (this.s) {
           case 0:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,96,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,96,0,16,32);
             }
             else {
 
@@ -441,7 +444,7 @@ class player {
             break;
           case 1:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,112,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,112,0,16,32);
             }
             else {
 
@@ -449,7 +452,7 @@ class player {
             break;
           case 2:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,96,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,96,0,16,32);
             }
             else {
 
@@ -457,7 +460,7 @@ class player {
             break;
           case 3:
             if (this.isReal) {
-              image(charSSReal,scale * 392,scale * 384,64*scale,128*scale,128,0,16,32);
+              image(charSSReal,scale*368,scale*336,64*scale,128*scale,128,0,16,32);
             }
             else {
 
