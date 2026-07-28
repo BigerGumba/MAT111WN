@@ -3,7 +3,8 @@ let c;
 
 let flag = [true, 
             false, false, false, false, false,
-            false, false, false, false
+            false, false, false, false, false,
+            false
 ];
 /*
   FLAGS GUIDE
@@ -17,6 +18,12 @@ let flag = [true,
   7 = Initiated?
   8 = Paused?
   9 = In Save Animation?
+  10 = Interacted with Bed?
+  11 = Interacted with Door?
+  12 = Interacted with Food Bin?
+  13 = Interacted with Laptop?
+  14 = Interacted with TV?
+  15 = Interacted with Mom?
 */
 let defaultFlags = [false,
                     false, false, false, false, false,
@@ -84,6 +91,25 @@ class dialogueBox {
     switch (this.tID) {
       case 0:
         block = dialogueFile.introductoryCutscene;
+        break;
+      case 1:
+        if (flag[10]) {
+          block = dialogueFile.sc00Interact001;
+        }
+        else {
+          block = dialogueFile.sc00Interact00;
+          flag[10] = true;
+        }
+        break;
+      case 2:
+        if (flag[11]) {
+          block = dialogueFile.sc00Interact001;
+        }
+        else {
+          block = dialogueFile.sc00Interact00;
+          flag[10] = true;
+        }
+        break;
     }
 
     this.lineList = block.text;
@@ -473,17 +499,39 @@ class player {
   }
 }
 
-class interactBox {
-  constructor(id, sx, sy, lx, ly) {
+let area2Ds = [];
+
+class boxInteract {
+  constructor(id, sx, sy, lx, ly, enabled=true) {
     this.id = id;
     this.sx = sx;
     this.sy = sy;
     this.lx = lx;
     this.ly = ly;
+    this.enabled = enabled;
   }
   onInteract() {
     switch (this.id) {
       case 0:
+        currDialogueBox = new dialogueBox(1);
+        break;
+    }
+  }
+}
+
+class boxTrigger {
+  constructor(id, sx, sy, lx, ly, enabled=true) {
+    this.id = id;
+    this.sx = sx;
+    this.sy = sy;
+    this.lx = lx;
+    this.ly = ly;
+    this.enabled = enabled;
+  }
+  onInteract() {
+    switch (this.id) {
+      case 0:
+        currDialogueBox = new dialogueBox(1);
         break;
     }
   }
