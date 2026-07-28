@@ -107,7 +107,43 @@ class dialogueBox {
         }
         else {
           block = dialogueFile.sc00Interact00;
-          flag[10] = true;
+          flag[11] = true;
+        }
+        break;
+      case 3:
+        if (flag[12]) {
+          block = dialogueFile.sc00Interact001;
+        }
+        else {
+          block = dialogueFile.sc00Interact00;
+          flag[12] = true;
+        }
+        break;
+      case 4:
+        if (flag[13]) {
+          block = dialogueFile.sc00Interact001;
+        }
+        else {
+          block = dialogueFile.sc00Interact00;
+          flag[13] = true;
+        }
+        break;
+      case 5:
+        if (flag[14]) {
+          block = dialogueFile.sc00Interact001;
+        }
+        else {
+          block = dialogueFile.sc00Interact00;
+          flag[14] = true;
+        }
+        break;
+      case 6:
+        if (flag[15]) {
+          block = dialogueFile.sc00Interact001;
+        }
+        else {
+          block = dialogueFile.sc00Interact00;
+          flag[15] = true;
         }
         break;
     }
