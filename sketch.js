@@ -628,7 +628,7 @@ class boxInteract {
     this.enabled = enabled;
   }
   onInteract() {
-    if ((this.interactable) && (!keyIsDown('z'))) {
+    if ((!this.enabled) || ((this.interactable) && (!keyIsDown(90) && (this.state != "I")))) {
       return;
     }
     switch (this.id) {
@@ -894,7 +894,7 @@ function changeScene(newId, entranceId=0) {
       x = 40;
       y = 660;
       area2Ds.push(new boxInteract(false,104,10,610,10,80));
-      area2Ds.push(new boxInteract(true,105,220,220,90,120,200));
+      area2Ds.push(new boxInteract(true,105,220,270,90,120));
       break;
     case 63:
       if (!flag[17]) {
