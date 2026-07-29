@@ -325,7 +325,14 @@ class betterButton {
           }
           else {
             flag[0] = true;
-            changeScene(200);
+
+            let debugIsLazy = true;
+            if (debugIsLazy) {
+              changeScene(60);
+            }
+            else {
+              changeScene(200);
+            }
           }
           break;
         case 1:
@@ -383,7 +390,7 @@ class betterButton {
   }
 }
 
-let screenOverlay = null;
+let currOverlay = null;
 
 class screenOverlay {
   constructor(lock,cstart,cend,millis) {
@@ -591,7 +598,8 @@ class player {
 let area2Ds = [];
 
 class boxInteract {
-  constructor(id, sx, sy, lx, ly, enabled=true) {
+  constructor(interactable, id, sx, sy, lx, ly, enabled=true) {
+    this.interactable = interactable;
     this.id = id;
     this.sx = sx;
     this.sy = sy;
@@ -600,24 +608,9 @@ class boxInteract {
     this.enabled = enabled;
   }
   onInteract() {
-    switch (this.id) {
-      case 0:
-        currDialogueBox = new dialogueBox(1);
-        break;
+    if ((this.interactable) && (!keyIsDown('z'))) {
+      return;
     }
-  }
-}
-
-class boxTrigger {
-  constructor(id, sx, sy, lx, ly, enabled=true) {
-    this.id = id;
-    this.sx = sx;
-    this.sy = sy;
-    this.lx = lx;
-    this.ly = ly;
-    this.enabled = enabled;
-  }
-  onInteract() {
     switch (this.id) {
       case 0:
         currDialogueBox = new dialogueBox(1);
@@ -829,6 +822,14 @@ function draw() {
 
   if (currDialogueBox) {
     currDialogueBox.display(deltaTime);
+  }
+
+  if ((area2Ds.length > 0) && (state == "I")) {
+    for (let area2D of area2Ds) {
+      if ((x > area2D.sx) && (x < (area2D.sx + area2D.lx)) && (y > area2D.sy) && (y < (area2D.sy + area2D.ly))) {
+        area2D.onInteract();
+      }
+    }
   }
 }
 
