@@ -1,7 +1,7 @@
 let scale = 1.0;
 let c;
 
-let flag = [true, 
+let flag = [false, 
             false, false, false, false, false,
             false, false, false, false, false,
             false
@@ -703,58 +703,6 @@ async function setup() {
   noSmooth();
 }
 
-function changeScene(newId) {
-  buttons = [];
-  currPlayer = null;
-
-  switch (newId) {
-    case 0:
-      currPlayer = new player(true, 3);
-      changeState("I");
-      break;
-    case 100:
-      currDialogueBox = new dialogueBox();
-      break;
-    case 101:
-      currDialogueBox = new dialogueBox();
-      break;
-    case 102:
-      currDialogueBox = new dialogueBox();
-      break;
-    case 103:
-      currDialogueBox = new dialogueBox();
-      break;
-    case 104:
-      currDialogueBox = new dialogueBox();
-      break;
-    case 200:
-      currDialogueBox = new dialogueBox(0);
-      break;
-    case 300:
-      buttons.push(new betterButton(0, 80, 480, 700, 72));
-      buttons.push(new betterButton(1, 80, 560, 700, 72));
-      buttons.push(new betterButton(2, 80, 640, 700, 72));
-      break;
-    case 301:
-      buttons.push(new betterButton(10, 80, 80, 700, 72));
-      buttons.push(new betterButton(11, 80, 160, 700, 72));
-      buttons.push(new betterButton(12, 80, 240, 700, 72));
-      buttons.push(new betterButton(13, 80, 320, 700, 72));
-      buttons.push(new betterButton(14, 80, 400, 700, 72));
-      buttons.push(new betterButton(15, 80, 480, 700, 72));
-      buttons.push(new betterButton(16, 80, 560, 700, 72));
-      break;
-    case 302:
-      buttons.push(new betterButton(3, 80, 640, 700, 72));
-      break;
-    case 303:
-      buttons.push(new betterButton(3, 80, 640, 700, 72));
-      break;
-  }
-
-  s = newId;
-}
-
 function draw() {
   resize();
 
@@ -785,6 +733,18 @@ function draw() {
     case 8:
       break;
     case 9:
+      break;
+    case 60:
+      s60(deltaTime);
+      break;
+    case 61:
+      s61(deltaTime);
+      break;
+    case 62:
+      s62(deltaTime);
+      break;
+    case 63:
+      s63(deltaTime);
       break;
     case 100:
       break;
@@ -831,6 +791,91 @@ function draw() {
       }
     }
   }
+
+  console.log(x);
+  console.log(y);
+}
+
+function changeScene(newId, entranceId=0) {
+  buttons = [];
+  currPlayer = null;
+
+  switch (newId) {
+    case 0:
+      x = 130;
+      y = 300;
+      currPlayer = new player(true, 1);
+      changeState("I");
+      break;
+    case 60:
+      switch (entranceId) {
+        case 0:
+          x = 180;
+          y = 500;
+          currPlayer = new player(true, 3);
+          changeState("I");
+          break;
+        case 1:
+          x = 300;
+          y = 240;
+          currPlayer = new player(true, 3);
+          changeState("I");
+          break;
+      }
+      break;
+    case 61:
+      currPlayer = new player(true, 3);
+      changeState("I");
+      break;
+    case 62:
+      currPlayer = new player(true, 3);
+      changeState("I");
+      break;
+    case 63:
+      currPlayer = new player(true, 3);
+      changeState("I");
+      break;
+    case 100:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 101:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 102:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 103:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 104:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 200:
+      currDialogueBox = new dialogueBox(0);
+      break;
+    case 300:
+      buttons.push(new betterButton(0, 80, 480, 700, 72));
+      buttons.push(new betterButton(1, 80, 560, 700, 72));
+      buttons.push(new betterButton(2, 80, 640, 700, 72));
+      break;
+    case 301:
+      buttons.push(new betterButton(10, 80, 80, 700, 72));
+      buttons.push(new betterButton(11, 80, 160, 700, 72));
+      buttons.push(new betterButton(12, 80, 240, 700, 72));
+      buttons.push(new betterButton(13, 80, 320, 700, 72));
+      buttons.push(new betterButton(14, 80, 400, 700, 72));
+      buttons.push(new betterButton(15, 80, 480, 700, 72));
+      buttons.push(new betterButton(16, 80, 560, 700, 72));
+      break;
+    case 302:
+      buttons.push(new betterButton(3, 80, 640, 700, 72));
+      break;
+    case 303:
+      buttons.push(new betterButton(3, 80, 640, 700, 72));
+      break;
+  }
+
+  s = newId;
 }
 
 function drawPlayer(delta) {
@@ -872,6 +917,32 @@ function s0(delta) {
   image(enviroSSReal[0],scale * (400 - x), scale * (400 - y), enviroSSReal[0].width * scale * 2, enviroSSReal[0].height * scale * 2);
   drawPlayer(delta);
   image(enviroSSReal[1],scale * (400 - x), scale * (400 - y), enviroSSReal[1].width * scale * 2, enviroSSReal[1].height * scale * 2);
+}
+
+function s60(delta) {
+  background(0);
+  image(enviroSSReal[2],scale * (400 - x), scale * (400 - y), enviroSSReal[2].width * scale * 2, enviroSSReal[2].height * scale * 2);
+  drawPlayer(delta);
+  image(enviroSSReal[3],scale * (400 - x), scale * (400 - y), enviroSSReal[3].width * scale * 2, enviroSSReal[3].height * scale * 2);
+}
+
+function s61(delta) {
+  background(0);
+  image(enviroSSReal[4],scale * (400 - x), scale * (400 - y), enviroSSReal[4].width * scale * 2, enviroSSReal[4].height * scale * 2);
+  drawPlayer(delta);
+}
+
+function s62(delta) {
+  background(0);
+  image(enviroSSReal[5],scale * (400 - x), scale * (400 - y), enviroSSReal[5].width * scale * 2, enviroSSReal[5].height * scale * 2);
+  drawPlayer(delta);
+}
+
+function s63(delta) {
+  background(0);
+  image(enviroSSReal[6],scale * (400 - x), scale * (400 - y), enviroSSReal[6].width * scale * 2, enviroSSReal[6].height * scale * 2);
+  drawPlayer(delta);
+  image(enviroSSReal[7],scale * (400 - x), scale * (400 - y), enviroSSReal[7].width * scale * 2, enviroSSReal[7].height * scale * 2);
 }
 
 function s300() {
