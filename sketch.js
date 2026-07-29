@@ -4,7 +4,7 @@ let c;
 let flag = [false, 
             false, false, false, false, false,
             false, false, false, false, false,
-            false
+            false, false
 ];
 /*
   FLAGS GUIDE
@@ -24,6 +24,7 @@ let flag = [false,
   13 = Interacted with Laptop?
   14 = Interacted with TV?
   15 = Interacted with Mom?
+  16 = Has axe?
 */
 let defaultFlags = [false,
                     false, false, false, false, false,
@@ -169,6 +170,10 @@ class dialogueBox {
           block = dialogueFile.sc02Interact02;
           flag[16] = true;
         }
+        break;
+      case 50:
+        break;
+      case 51:
         break;
       case 100:
         block = dialogueFile.ending0;
@@ -615,6 +620,33 @@ class boxInteract {
       case 0:
         currDialogueBox = new dialogueBox(1);
         break;
+      case 100:
+        changeScene(61,0);
+        break;
+      case 101:
+        changeScene(60, 1);
+        break;
+      case 102:
+        changeScene(102);
+        break;
+      case 103:
+        changeScene(62);
+        break;
+      case 104:
+        changeScene(61, 1);
+        break;
+      case 105:
+        changeScene(63);
+        break;
+      case 106:
+        currDialogueBox = new dialogueBox(50);
+        break;
+      case 107:
+        currDialogueBox = new dialogueBox(51);
+        break;
+      case 108:
+        currDialogueBox = new dialogueBox(52);
+        break;
     }
   }
 }
@@ -798,6 +830,7 @@ function draw() {
 
 function changeScene(newId, entranceId=0) {
   buttons = [];
+  area2Ds = [];
   currPlayer = null;
 
   switch (newId) {
@@ -822,6 +855,7 @@ function changeScene(newId, entranceId=0) {
           changeState("I");
           break;
       }
+      //area2Ds.push(new boxInteract());
       break;
     case 61:
       currPlayer = new player(true, 3);

@@ -98,6 +98,22 @@
     "speaker":["Exelsior"],
     "text":"Attention, /pOPERATOR0040."
   },
+  "axePickup00":{
+    "speaker":[""],
+    "text":"Picked up a handaxe./p You might as well need the protection./e"
+  },
+  "axePickup01":{
+    "speaker":["Iris"],
+    "text":"I'm ending this one way or another./l It won't keep me in a cell EVER again!/e"
+  },
+  "bossSpeech00":{
+    "speaker":["Exelsior"],
+    "text":"Attention, /pOPERATOR0040."
+  },
+  "bossSpeech01":{
+    "speaker":["Exelsior"],
+    "text":"Attention, /pOPERATOR0040."
+  },
   "ending0":{
     "speaker":["Exelsior","OPERATOR0038","OPERATOR0040","Exelsior","OPERATOR0040","Exelsior",""],
     "text":"Welcome back, OPERATORs!/eYou've done some impressive work today./p You may now rest for the day.../p to ensure you've got enough energy for tomorrow!/e/sHey, 40, what's up? Is your facial scanner acting up or something?/e/sH-huh? No, I'm fine, just./p./p./eI saw something REALLY weird while working today./p Something /punnatural./l And when I tried to approach it-/c/sOPERATOR40, is something the matter?/eFrom what it seems, you shouldn't have encountered anything out of the ordinary./eSome anomalies exist deep in the program,/p sure,/p but you weren't even CLOSE to the edge, believe me!/eI was just retrieving you to remind you your shift had ended!/p Now go along now, you seem a bit irate today!/e/sBut I swear there was an anomaly,/p why'd you-/c/sOPERATORS-/l DISMISSED!/eAnd so she couldn't discover what was behind that portal./l But maybe with a bit more dexterity.../eNah, not gonna happen./e/!99"
