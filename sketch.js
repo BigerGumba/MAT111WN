@@ -855,11 +855,24 @@ function changeScene(newId, entranceId=0) {
           changeState("I");
           break;
       }
-      //area2Ds.push(new boxInteract());
+      area2Ds.push(new boxInteract(false,100,240,180,80,10));
       break;
     case 61:
-      currPlayer = new player(true, 3);
-      changeState("I");
+      switch (entranceId) {
+        case 0:
+          x = 240;
+          y = 410;
+          currPlayer = new player(true, 2);
+          break;
+        case 1:
+          x = 600;
+          y = 300;
+          currPlayer = new player(true, 0);
+          break;
+      }
+      area2Ds.push(new boxInteract(false,101,200,440,80,10));
+      area2Ds.push(new boxInteract(false,102,30,270,10,80));
+      area2Ds.push(new boxInteract(false,103,2115,270,10,80));
       break;
     case 62:
       currPlayer = new player(true, 3);
@@ -870,19 +883,19 @@ function changeScene(newId, entranceId=0) {
       changeState("I");
       break;
     case 100:
-      currDialogueBox = new dialogueBox();
+      currDialogueBox = new dialogueBox(100);
       break;
     case 101:
-      currDialogueBox = new dialogueBox();
+      currDialogueBox = new dialogueBox(101);
       break;
     case 102:
-      currDialogueBox = new dialogueBox();
+      currDialogueBox = new dialogueBox(102);
       break;
     case 103:
-      currDialogueBox = new dialogueBox();
+      currDialogueBox = new dialogueBox(103);
       break;
     case 104:
-      currDialogueBox = new dialogueBox();
+      currDialogueBox = new dialogueBox(104);
       break;
     case 200:
       currDialogueBox = new dialogueBox(0);
