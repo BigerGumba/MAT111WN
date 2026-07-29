@@ -865,8 +865,8 @@ function changeScene(newId, entranceId=0) {
           currPlayer = new player(true, 2);
           break;
         case 1:
-          x = 600;
-          y = 300;
+          x = 2075;
+          y = 310;
           currPlayer = new player(true, 0);
           break;
       }
@@ -876,11 +876,12 @@ function changeScene(newId, entranceId=0) {
       break;
     case 62:
       currPlayer = new player(true, 3);
-      changeState("I");
+      x = 40;
+      y = 660;
+      area2Ds.push(new boxInteract(false,104,10,610,10,80));
+      area2Ds.push(new boxInteract(true,105,220,420,120,200));
       break;
     case 63:
-      currPlayer = new player(true, 3);
-      changeState("I");
       break;
     case 100:
       currDialogueBox = new dialogueBox(100);
