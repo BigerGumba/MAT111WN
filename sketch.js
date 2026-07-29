@@ -4,7 +4,7 @@ let c;
 let flag = [false, 
             false, false, false, false, false,
             false, false, false, false, false,
-            false, false
+            false, false, false
 ];
 /*
   FLAGS GUIDE
@@ -25,6 +25,7 @@ let flag = [false,
   14 = Interacted with TV?
   15 = Interacted with Mom?
   16 = Has axe?
+  17 = Read lazy note?
 */
 let defaultFlags = [false,
                     false, false, false, false, false,
@@ -162,18 +163,29 @@ class dialogueBox {
       case 11:
         block = dialogueFile.sc02Interact01;
         break;
-      case 12:
+      case 50:
+        block = dialogueFile.elevator;
+        break;
+      case 51:
         if (flag[16]) {
-          block = dialogueFile.sc02Interact021;
+          block = dialogueFile.axePickup01;
         }
         else {
-          block = dialogueFile.sc02Interact02;
+          block = dialogueFile.axePickup00;
           flag[16] = true;
         }
         break;
-      case 50:
+      case 52:
+        if (flag[16]) {
+          block = dialogueFile.bossSpeech01;
+        }
+        else {
+          block = dialogueFile.bossSpeech00;
+        }
         break;
-      case 51:
+      case 53:
+        block = dialogueFile.lazy;
+        flag[17] = false;
         break;
       case 100:
         block = dialogueFile.ending0;
@@ -286,6 +298,9 @@ class dialogueBox {
           switch (eventCode) {
             case "00":
               changeScene(0);
+              break;
+            case "98":
+              changeScene(63);
               break;
             case "99":
               changeScene(300);
@@ -636,16 +651,16 @@ class boxInteract {
         changeScene(61, 1);
         break;
       case 105:
-        changeScene(63);
-        break;
-      case 106:
         currDialogueBox = new dialogueBox(50);
         break;
-      case 107:
+      case 106:
         currDialogueBox = new dialogueBox(51);
         break;
-      case 108:
+      case 107:
         currDialogueBox = new dialogueBox(52);
+        break;
+      case 108:
+        currDialogueBox = new dialogueBox(53);
         break;
     }
   }
@@ -882,6 +897,9 @@ function changeScene(newId, entranceId=0) {
       area2Ds.push(new boxInteract(true,105,220,420,120,200));
       break;
     case 63:
+      if (!flag[17]) {
+
+      }
       break;
     case 100:
       currDialogueBox = new dialogueBox(100);

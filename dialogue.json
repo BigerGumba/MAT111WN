@@ -106,6 +106,10 @@
     "speaker":["Iris"],
     "text":"I'm ending this one way or another./l It won't keep me in a cell EVER again!/e"
   },
+  "elevator":{
+    "speaker":["Iris"],
+    "text":"Looks like one of the lifts at work. /pI wonder if-/p oh!/eUhm../eGeez, this place is huge. /pOnly one place the boss could be, though-/l 'Control Room'.../eOkay, let's do this./e/!98"
+  },
   "bossSpeech00":{
     "speaker":["Exelsior"],
     "text":"Attention, /pOPERATOR0040."
@@ -113,6 +117,10 @@
   "bossSpeech01":{
     "speaker":["Exelsior"],
     "text":"Attention, /pOPERATOR0040."
+  },
+  "lazy":{
+    "speaker":["Iris","Desmond","Iris"],
+    "text":"What's this thing here?/e/s'Hello! If you're reading this, I'm a lazy bum who is still working on this game../eHopefully this note won't be here in a few weeks.../l or years./eSee you later!'/e/s/p./p./p./e'"
   },
   "ending0":{
     "speaker":["Exelsior","OPERATOR0038","OPERATOR0040","Exelsior","OPERATOR0040","Exelsior",""],
