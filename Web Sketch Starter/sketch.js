@@ -103,48 +103,87 @@ class dialogueBox {
         break;
       case 2:
         if (flag[11]) {
-          block = dialogueFile.sc00Interact001;
+          block = dialogueFile.sc00Interact011;
         }
         else {
-          block = dialogueFile.sc00Interact00;
+          block = dialogueFile.sc00Interact01;
           flag[11] = true;
         }
         break;
       case 3:
+        block = dialogueFile.sc00Interact02;
+        break;
+      case 4:
         if (flag[12]) {
-          block = dialogueFile.sc00Interact001;
+          block = dialogueFile.sc00Interact031;
         }
         else {
-          block = dialogueFile.sc00Interact00;
+          block = dialogueFile.sc00Interact03;
           flag[12] = true;
         }
         break;
-      case 4:
+      case 5:
+        block = dialogueFile.sc00Interact04;
+        break;
+      case 6:
         if (flag[13]) {
-          block = dialogueFile.sc00Interact001;
+          block = dialogueFile.sc00Interact051;
         }
         else {
-          block = dialogueFile.sc00Interact00;
+          block = dialogueFile.sc00Interact05;
           flag[13] = true;
         }
         break;
-      case 5:
+      case 7:
+        block = dialogueFile.sc01Interact00;
+        break;
+      case 8:
         if (flag[14]) {
-          block = dialogueFile.sc00Interact001;
+          block = dialogueFile.sc01Interact011;
         }
         else {
-          block = dialogueFile.sc00Interact00;
+          block = dialogueFile.sc01Interact01;
           flag[14] = true;
         }
         break;
-      case 6:
+      case 9:
+        block = dialogueFile.sc01Interact02;
+        break;
+      case 10:
         if (flag[15]) {
-          block = dialogueFile.sc00Interact001;
+          block = dialogueFile.sc02Interact001;
         }
         else {
-          block = dialogueFile.sc00Interact00;
+          block = dialogueFile.sc02Interact00;
           flag[15] = true;
         }
+        break;
+      case 11:
+        block = dialogueFile.sc02Interact01;
+        break;
+      case 12:
+        if (flag[16]) {
+          block = dialogueFile.sc02Interact021;
+        }
+        else {
+          block = dialogueFile.sc02Interact02;
+          flag[16] = true;
+        }
+        break;
+      case 100:
+        block = dialogueFile.ending0;
+        break;
+      case 101:
+        block = dialogueFile.ending1;
+        break;
+      case 102:
+        block = dialogueFile.ending2;
+        break;
+      case 103:
+        block = dialogueFile.ending3;
+        break;
+      case 104:
+        block = dialogueFile.ending4;
         break;
     }
 
@@ -243,6 +282,8 @@ class dialogueBox {
             case "00":
               changeScene(0);
               break;
+            case "99":
+              changeScene(300);
           }
           this.c++;
           break;
@@ -342,8 +383,14 @@ class betterButton {
   }
 }
 
+let screenOverlay = null;
+
 class screenOverlay {
-  constructor(cstart,cend,millis) {
+  constructor(lock,cstart,cend,millis) {
+    this.lastState = state;
+    if (lock) {
+      state = "C";
+    }
     this.cstart = cstart;
     this.cend = cend;
     this.timeLeft = millis;
@@ -352,8 +399,14 @@ class screenOverlay {
   display(delta) {
     if (this.timeLeft > 0) {
       fill(lerpColor(this.cend, this.cstart, this.timeLeft/this.duration));
-      rect(-100,-100,1000,1000);
+      rect(scale*-100,scale*-100,scale*1000,scale*1000);
       this.timeLeft -= delta;
+    }
+    if (this.timeLeft <= 0) {
+      if (lock) {
+        state = this.lastState;
+      }
+      screenOverlay = null;
     }
   }
 }
@@ -666,6 +719,21 @@ function changeScene(newId) {
       currPlayer = new player(true, 3);
       changeState("I");
       break;
+    case 100:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 101:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 102:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 103:
+      currDialogueBox = new dialogueBox();
+      break;
+    case 104:
+      currDialogueBox = new dialogueBox();
+      break;
     case 200:
       currDialogueBox = new dialogueBox(0);
       break;
@@ -728,12 +796,16 @@ function draw() {
     case 100:
       break;
     case 101:
+      background(0);
       break;
     case 102:
+      background(0);
       break;
     case 103:
+      background(0);
       break;
     case 104:
+      background(0);
       break;
     case 200:
       background(0);
