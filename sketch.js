@@ -211,7 +211,7 @@ class dialogueBox {
     stroke(255); 
     fill(0);
     textSize(32 * scale);
-    if (this.speakerList.length > 0) {
+    if (this.s != "") {
       circle(scale * 60,scale * 560,scale * 40); 
       circle(scale * 240,scale * 560,scale * 40); 
 
@@ -224,9 +224,10 @@ class dialogueBox {
       line(scale * 260,scale * 560,scale * 260,scale * 600); 
       line(scale * 40,scale * 560,scale * 40,scale * 640);
 
+      fill(255);
       text(this.speakerList[this.s],scale * 150,scale * 580);
     }
-    
+    fill(0);
     circle(scale * 80, scale * 640, scale * 80); 
     circle(scale * 80, scale * 720, scale * 80); 
     circle(scale * 720, scale * 640, scale * 80); 
@@ -303,9 +304,13 @@ class dialogueBox {
               changeScene(63);
               break;
             case "99":
+              currOverlay = null;
               changeScene(300);
               break;
             case "9a":
+              break;
+            case "e1":
+              currOverlay = new screenOverlay(false, true, color(0,0,0,0), color(0,0,0,0,255),1000);
               break;
             case "e3":
               changeScene(103);
@@ -422,7 +427,7 @@ class betterButton {
 let currOverlay = null;
 
 class screenOverlay {
-  constructor(lock,cstart,cend,millis) {
+  constructor(lock,eternal,cstart,cend,millis) {
     this.lastState = state;
     if (lock) {
       state = "C";
@@ -431,6 +436,7 @@ class screenOverlay {
     this.cend = cend;
     this.timeLeft = millis;
     this.duration = millis;
+    this.eternal = eternal;
   }
   display(delta) {
     if (this.timeLeft > 0) {
@@ -439,10 +445,12 @@ class screenOverlay {
       this.timeLeft -= delta;
     }
     if (this.timeLeft <= 0) {
-      if (lock) {
+      if (this.lock) {
         state = this.lastState;
       }
-      screenOverlay = null;
+      if (!this.eternal) {
+        screenOverlay = null;
+      }
     }
   }
 }
@@ -674,6 +682,9 @@ class boxInteract {
       case 108:
         currDialogueBox = new dialogueBox(51);
         break;
+      case 109:
+        currDialogueBox = new dialogueBox(101);
+        break;
     }
   }
   debug() {
@@ -775,6 +786,10 @@ function draw() {
     for (let button of buttons) {
       button.resize();
     }
+  }
+
+  if (currOverlay) {
+    currOverlay.display(deltaTime);
   }
 
   switch (s) {
@@ -889,6 +904,7 @@ function changeScene(newId, entranceId=0) {
           break;
       }
       area2Ds.push(new boxInteract(false,100,260,180,80,10));
+      area2Ds.push(new boxInteract(true,109,140,450,80,120));
       break;
     case 61:
       switch (entranceId) {
