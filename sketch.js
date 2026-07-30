@@ -185,7 +185,7 @@ class dialogueBox {
         break;
       case 53:
         block = dialogueFile.lazy;
-        flag[17] = false;
+        flag[17] = true;
         break;
       case 100:
         block = dialogueFile.ending0;
@@ -655,7 +655,9 @@ class boxInteract {
         currDialogueBox = new dialogueBox(50);
         break;
       case 106:
-        currDialogueBox = new dialogueBox(53);
+        if (!flag[17]) {
+          currDialogueBox = new dialogueBox(53);
+        }
         break;
       case 107:
         currDialogueBox = new dialogueBox(51);
@@ -891,14 +893,14 @@ function changeScene(newId, entranceId=0) {
           break;
       }
       area2Ds.push(new boxInteract(false,101,200,440,80,10));
-      area2Ds.push(new boxInteract(false,102,30,303,10,100));
-      area2Ds.push(new boxInteract(false,103,2115,303,10,100));
+      area2Ds.push(new boxInteract(false,102,30,253,10,150));
+      area2Ds.push(new boxInteract(false,103,2115,253,10,150));
       break;
     case 62:
       currPlayer = new player(true, 1);
       x = 40;
       y = 660;
-      area2Ds.push(new boxInteract(false,104,10,660,10,100));
+      area2Ds.push(new boxInteract(false,104,10,610,10,150));
       area2Ds.push(new boxInteract(true,105,265,270,130,190));
       break;
     case 63:
