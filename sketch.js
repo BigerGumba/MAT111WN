@@ -839,8 +839,7 @@ function draw() {
     }
   }
 
-  console.log(x);
-  console.log(y);
+  console.log(x + ", " + y + ", " + state);
 }
 
 function changeScene(newId, entranceId=0) {
