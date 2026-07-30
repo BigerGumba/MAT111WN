@@ -610,8 +610,9 @@ class player {
             }
             break;
         }
-        break;
+        break; 
     }
+    rect((scale * 400), (scale * 400),scale*5,scale*5);
   }
 }
 
@@ -628,7 +629,7 @@ class boxInteract {
     this.enabled = enabled;
   }
   onInteract() {
-    if ((!this.enabled) || ((this.interactable) && (!keyIsDown(90) && (this.state != "I")))) {
+    if (!this.enabled) {
       return;
     }
     switch (this.id) {
@@ -654,15 +655,19 @@ class boxInteract {
         currDialogueBox = new dialogueBox(50);
         break;
       case 106:
-        currDialogueBox = new dialogueBox(51);
-        break;
-      case 107:
-        currDialogueBox = new dialogueBox(52);
-        break;
-      case 108:
         currDialogueBox = new dialogueBox(53);
         break;
+      case 107:
+        currDialogueBox = new dialogueBox(51);
+        break;
+      case 108:
+        currDialogueBox = new dialogueBox(52);
+        break;
     }
+  }
+  debug() {
+    fill(200);
+    rect(scale * (400 + this.sx - x), scale * (400 + this.sy - y), scale * this.lx, scale * this.ly);
   }
 }
 
@@ -833,7 +838,8 @@ function draw() {
 
   if ((area2Ds.length > 0) && (state == "I")) {
     for (let area2D of area2Ds) {
-      if ((x > area2D.sx) && (x < (area2D.sx + area2D.lx)) && (y > area2D.sy) && (y < (area2D.sy + area2D.ly))) {
+      area2D.debug();
+      if ((!area2D.interactable) && ((x > area2D.sx) && (x < (area2D.sx + area2D.lx)) && (y > area2D.sy) && (y < (area2D.sy + area2D.ly)))) {
         area2D.onInteract();
       }
     }
@@ -869,7 +875,7 @@ function changeScene(newId, entranceId=0) {
           changeState("I");
           break;
       }
-      area2Ds.push(new boxInteract(false,100,240,180,80,10));
+      area2Ds.push(new boxInteract(false,100,260,180,80,10));
       break;
     case 61:
       switch (entranceId) {
@@ -885,20 +891,21 @@ function changeScene(newId, entranceId=0) {
           break;
       }
       area2Ds.push(new boxInteract(false,101,200,440,80,10));
-      area2Ds.push(new boxInteract(false,102,30,270,10,80));
-      area2Ds.push(new boxInteract(false,103,2115,270,10,80));
+      area2Ds.push(new boxInteract(false,102,30,303,10,100));
+      area2Ds.push(new boxInteract(false,103,2115,303,10,100));
       break;
     case 62:
-      currPlayer = new player(true, 3);
+      currPlayer = new player(true, 1);
       x = 40;
       y = 660;
-      area2Ds.push(new boxInteract(false,104,10,610,10,80));
-      area2Ds.push(new boxInteract(true,105,220,270,90,120));
+      area2Ds.push(new boxInteract(false,104,10,660,10,100));
+      area2Ds.push(new boxInteract(true,105,265,270,130,190));
       break;
     case 63:
-      if (!flag[17]) {
-
-      }
+      currPlayer = new player(true, 2);
+      x = 1000;
+      y = 1850;
+      area2Ds.push(new boxInteract(true,106,100,1800,40,100));
       break;
     case 100:
       currDialogueBox = new dialogueBox(100);
@@ -949,22 +956,22 @@ function drawPlayer(delta) {
     if (state == "I") {
       if (keyIsDown(UP_ARROW)){
         currPlayer.dir = 2;
-        y+= -0.2 * delta;
+        y+= -0.25 * delta;
         isMoving = true;
       }
       if (keyIsDown(DOWN_ARROW)) {
         currPlayer.dir = 3;
-        y+= 0.2 * delta;
+        y+= 0.25 * delta;
         isMoving = true;
       }
       if (keyIsDown(RIGHT_ARROW)) {
         currPlayer.dir = 1;
-        x+= 0.2 * delta;
+        x+= 0.25 * delta;
         isMoving = true;
       }
       if (keyIsDown(LEFT_ARROW)) {
         currPlayer.dir = 0;
-        x+= -0.2 * delta;
+        x+= -0.25 * delta;
         isMoving = true;
       }
     }
@@ -1105,6 +1112,15 @@ function keyPressed() {
       case "D":
         currDialogueBox.advance();
         break;
+      case "I":
+        if (area2Ds.length > 0) {
+          for (let area2D of area2Ds) {
+            if ((area2D.interactable) && ((x > area2D.sx) && (x < (area2D.sx + area2D.lx)) && (y > area2D.sy) && (y < (area2D.sy + area2D.ly)))) {
+              area2D.onInteract();
+        break;
+            }
+          }
+        }
     }
   }
   if ((keyCode === ESCAPE) && ((state == "I") || (state == "D"))) {
