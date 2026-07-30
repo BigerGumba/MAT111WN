@@ -4,7 +4,7 @@ let c;
 let flag = [false, 
             false, false, false, false, false,
             false, false, false, false, false,
-            false, false, false
+            false, true, true
 ];
 /*
   FLAGS GUIDE
@@ -304,6 +304,15 @@ class dialogueBox {
               break;
             case "99":
               changeScene(300);
+              break;
+            case "9a":
+              break;
+            case "e3":
+              changeScene(103);
+              break;
+            case "e4":
+              changeScene(104);
+              break;
           }
           this.c++;
           break;
@@ -660,10 +669,10 @@ class boxInteract {
         }
         break;
       case 107:
-        currDialogueBox = new dialogueBox(51);
+        currDialogueBox = new dialogueBox(52);
         break;
       case 108:
-        currDialogueBox = new dialogueBox(52);
+        currDialogueBox = new dialogueBox(51);
         break;
     }
   }
@@ -908,6 +917,8 @@ function changeScene(newId, entranceId=0) {
       x = 1000;
       y = 1850;
       area2Ds.push(new boxInteract(true,106,100,1800,40,100));
+      area2Ds.push(new boxInteract(false,107,800,600,400,400));
+
       break;
     case 100:
       currDialogueBox = new dialogueBox(100);

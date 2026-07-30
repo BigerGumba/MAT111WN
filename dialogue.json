@@ -112,11 +112,11 @@
   },
   "bossSpeech00":{
     "speaker":["Exelsior"],
-    "text":"Attention, /pOPERATOR0040."
+    "text":"Well,/p well,/p well./l Seems you like doing things the hard way./e Return to your cell, or I will have to use excessive force./e./p./p.well then./l You will regret ever finding that portal./p Think you can run from me now?/eLet's see you do ANYTHING against the all-knowing commander of this facility!/eWhat, think you can reason with me?/pI am above your pity./l Now.../e/!9aGoodnight./e/!e3"
   },
   "bossSpeech01":{
     "speaker":["Exelsior"],
-    "text":"Attention, /pOPERATOR0040."
+    "text":"Well,/p well,/p well./l Seems you like doing things the hard way./e Return to your cell, or I will have to use excessive force./e./p./p.well then./l You will-/p wait, what are you doing?/eNo, don't you realize you're making a mistake?/p You have NOTHING/p besides my world!/eYour family,/p friends,/p you are destroying their lives!/eYou will regret.../p pay.../p for this-/e(bee-OOP!)/e/!e4"
   },
   "lazy":{
     "speaker":["Iris","Desmond","Iris"],
@@ -127,16 +127,16 @@
     "text":"Welcome back, OPERATORs!/eYou've done some impressive work today./p You may now rest for the day.../p to ensure you've got enough energy for tomorrow!/e/sHey, 40, what's up? Is your facial scanner acting up or something?/e/sH-huh? No, I'm fine, just./p./p./eI saw something REALLY weird while working today./p Something /punnatural./l And when I tried to approach it-/c/sOPERATOR40, is something the matter?/eFrom what it seems, you shouldn't have encountered anything out of the ordinary./eSome anomalies exist deep in the program,/p sure,/p but you weren't even CLOSE to the edge, believe me!/eI was just retrieving you to remind you your shift had ended!/p Now go along now, you seem a bit irate today!/e/sBut I swear there was an anomaly,/p why'd you-/c/sOPERATORS-/l DISMISSED!/eAnd so she couldn't discover what was behind that portal./l But maybe with a bit more dexterity.../eNah, not gonna happen./e/!99"
   },
   "ending1":{
-    "speaker":["Exelsior"],
-    "text":"Good.../l Thank you for complying with your rightful ADMINISTRATOR./eTake a deep breath now, this is all just a dream./p./p./eSo life returned to normal for Iris./p Or rather, for OPERATOR0040./eThe ADMINISTRATOR never questioned what had happened, and Iris would encounter similar portals during the following months./eShe never tried to enter one again,/p for she believed only trouble lurked beyond the normally barred-off door./eShe would pretend the portals didn't exist, but one day./p./p./l they disappeared for real./eAnd Iris would serve as an OPERATOR for the rest of her life, in blissful simplicity./e/!99"
+    "speaker":["Exelsior",""],
+    "text":"Good.../l Thank you for complying with your rightful ADMINISTRATOR./eTake a deep breath now, this is all just a dream./p./p./e/sSo life returned to normal for Iris./p Or rather, for OPERATOR0040./eThe ADMINISTRATOR never questioned what had happened, and Iris would encounter similar portals during the following months./eShe never tried to enter one again,/p for she believed only trouble lurked beyond the normally barred-off door./eShe would pretend the portals didn't exist, but one day./p./p./l they disappeared for real./eAnd Iris would serve as an OPERATOR for the rest of her life, in blissful simplicity./e/!99"
   },
   "ending2":{
     "speaker":[""],
-    "text":"/!99"
+    "text":"Iris had heard many differing stories about the world outside, none of them very positive./eIs the world coated in endless jungle?/p Wasteland?/p Ocean?/p Or was there no world at all?/eFor all she knew she could step outside and be evaporated in an instant./eBut that didn't happen./l Iris looked around her new surroundings, then at the massive facility behind her./l Only one thing was certain./eAs much as she would miss her family and coworkers, she could never go back./e/!99"
   },
   "ending3":{
-    "speaker":["Exelsior"],
-    "text":"/!99"
+    "speaker":[""],
+    "text":"So you're finally up./p Indeed, it never intended to kill you./eYou now have a new cell,/p a new job,/p and new furniture./eYour new room also has backup generators, so it's not like you'll be able to strut around like that again./eYour new job is to get rid of anomalies like what you saw./p So more don't get into trouble./eAfter that,/l you may rot alone./e It is what you deserve./e/!99"
   },
   "ending4":{
     "speaker":[""],
