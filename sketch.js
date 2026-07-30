@@ -2,9 +2,9 @@ let scale = 1.0;
 let c;
 
 let flag = [false, 
-            false, false, false, false, false,
-            false, false, false, false, false,
-            false, true, true
+            false, false, false, false, true,
+            true, false, false, false, false,
+            false, false, false
 ];
 /*
   FLAGS GUIDE
@@ -211,7 +211,7 @@ class dialogueBox {
     stroke(255); 
     fill(0);
     textSize(32 * scale);
-    if (this.s != "") {
+    if (this.speakerList[this.s] != "") {
       circle(scale * 60,scale * 560,scale * 40); 
       circle(scale * 240,scale * 560,scale * 40); 
 
@@ -310,7 +310,7 @@ class dialogueBox {
             case "9a":
               break;
             case "e1":
-              currOverlay = new screenOverlay(false, true, color(0,0,0,0), color(0,0,0,0,255),1000);
+              currOverlay = new screenOverlay(false, true, color(0,0,0,0), color(0,0,0,255),1000);
               break;
             case "e3":
               changeScene(103);
@@ -429,6 +429,7 @@ let currOverlay = null;
 class screenOverlay {
   constructor(lock,eternal,cstart,cend,millis) {
     this.lastState = state;
+    this.lock = lock;
     if (lock) {
       state = "C";
     }
@@ -439,9 +440,9 @@ class screenOverlay {
     this.eternal = eternal;
   }
   display(delta) {
+    fill(lerpColor(this.cend, this.cstart, this.timeLeft/this.duration));
+    rect(scale*-100,scale*-100,scale*1000,scale*1000);
     if (this.timeLeft > 0) {
-      fill(lerpColor(this.cend, this.cstart, this.timeLeft/this.duration));
-      rect(scale*-100,scale*-100,scale*1000,scale*1000);
       this.timeLeft -= delta;
     }
     if (this.timeLeft <= 0) {
@@ -449,7 +450,7 @@ class screenOverlay {
         state = this.lastState;
       }
       if (!this.eternal) {
-        screenOverlay = null;
+        currOverlay = null;
       }
     }
   }
@@ -629,7 +630,8 @@ class player {
         }
         break; 
     }
-    rect((scale * 400), (scale * 400),scale*5,scale*5);
+    //debug feature
+    //rect((scale * 400), (scale * 400),scale*5,scale*5);
   }
 }
 
@@ -788,10 +790,6 @@ function draw() {
     }
   }
 
-  if (currOverlay) {
-    currOverlay.display(deltaTime);
-  }
-
   switch (s) {
     case 0:
       s0(deltaTime);
@@ -859,6 +857,9 @@ function draw() {
       background(0);
       return;
   }
+  if (currOverlay) {
+    currOverlay.display(deltaTime);
+  }
 
   if (currDialogueBox) {
     currDialogueBox.display(deltaTime);
@@ -866,7 +867,6 @@ function draw() {
 
   if ((area2Ds.length > 0) && (state == "I")) {
     for (let area2D of area2Ds) {
-      area2D.debug();
       if ((!area2D.interactable) && ((x > area2D.sx) && (x < (area2D.sx + area2D.lx)) && (y > area2D.sy) && (y < (area2D.sy + area2D.ly)))) {
         area2D.onInteract();
       }
