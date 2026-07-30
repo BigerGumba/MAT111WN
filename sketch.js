@@ -677,7 +677,7 @@ class boxInteract {
     }
   }
   debug() {
-    fill(200);
+    fill(200,200,200,155);
     rect(scale * (400 + this.sx - x), scale * (400 + this.sy - y), scale * this.lx, scale * this.ly);
   }
 }
@@ -726,6 +726,8 @@ function preload() {
   enviroSSReal.push(loadImage("./assets/scenes/rwelevator.png"));
   enviroSSReal.push(loadImage("./assets/scenes/rwarenaunder.png"));
   enviroSSReal.push(loadImage("./assets/scenes/rwarenaover.png"));
+  enviroSSReal.push(loadImage("./assets/decor/axefull.png"));
+  enviroSSReal.push(loadImage("./assets/decor/axetaken.png"));
 }
 
 let playButton;
@@ -911,6 +913,7 @@ function changeScene(newId, entranceId=0) {
       y = 660;
       area2Ds.push(new boxInteract(false,104,10,610,10,150));
       area2Ds.push(new boxInteract(true,105,265,270,130,190));
+      area2Ds.push(new boxInteract(true,108,480,270,120,200));
       break;
     case 63:
       currPlayer = new player(true, 2);
@@ -1020,6 +1023,12 @@ function s61(delta) {
 function s62(delta) {
   background(0);
   image(enviroSSReal[5],scale * (400 - x), scale * (400 - y), enviroSSReal[5].width * scale * 2, enviroSSReal[5].height * scale * 2);
+  if (!flag[16]) {
+    image(enviroSSReal[8],scale * (900 - x), scale * (780 - y), enviroSSReal[8].width * scale * 2, enviroSSReal[8].height * scale * 2);
+  }
+  else {
+    image(enviroSSReal[9],scale * (900 - x), scale * (780 - y), enviroSSReal[9].width * scale * 2, enviroSSReal[9].height * scale * 2);
+  }
   drawPlayer(delta);
 }
 

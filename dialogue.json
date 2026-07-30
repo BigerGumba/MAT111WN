@@ -139,7 +139,7 @@
     "text":"So you're finally up./p Indeed, it never intended to kill you./eYou now have a new cell,/p a new job,/p and new furniture./eYour new room also has backup generators, so it's not like you'll be able to strut around like that again./eYour new job is to get rid of anomalies like what you saw./p So more don't get into trouble./eAfter that,/l you may rot alone./e It is what you deserve./e/!99"
   },
   "ending4":{
-    "speaker":[""],
-    "text":"/!99"
+    "speaker":["Iris"],
+    "text":"Destroying the central server released everyone from the simulation and their cells immediately./eSeeing this, I went back downstairs to find my family and friends./eWhen some of the others realized what I had done, they either turned away in confliction,/p or expressed gratitude./eSome decided to leave the facility and venture into the unknown./eBut not my family./l They resolved to stay by my side, no matter what./eAnd we have a lot of work ahead of us./eWe're going to make this place truly better for all of us./e/!99"
   }
 }
